@@ -49,7 +49,7 @@ namespace StudentService.Controllers
                 student.VerifyEmail = false;
 
                 #region save data to data base
-                using (StudentEntities dc = new StudentEntities())
+                using (StudentServiceEntities dc = new StudentServiceEntities())
                 {
                     dc.Students.Add(student);
                     dc.SaveChanges();
@@ -80,7 +80,7 @@ namespace StudentService.Controllers
         public ActionResult VerifyAccount(string id)
         {
             bool Status = false;
-            using (StudentEntities dc = new StudentEntities())
+            using (StudentServiceEntities dc = new StudentServiceEntities())
             {
                 dc.Configuration.ValidateOnSaveEnabled = false; //to avoid
 
@@ -111,14 +111,14 @@ namespace StudentService.Controllers
         }
 
         //logout
-      
 
-       [ HttpPost]
+
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login( login login, string ReturnUrl = "")
+        public ActionResult Login(login login, string ReturnUrl = "")
         {
             string Message = "";
-            using (StudentEntities dc = new StudentEntities())
+            using (StudentServiceEntities dc = new StudentServiceEntities())
             {
                 var v = dc.Students.Where(a => a.Email == login.Email).FirstOrDefault();
                 if (v != null)
@@ -138,17 +138,23 @@ namespace StudentService.Controllers
                         cookie.HttpOnly = true;
                         Response.Cookies.Add(cookie);
 
+                       
+                           if (Url.IsLocalUrl(ReturnUrl))
+                            {
+                                return Redirect(ReturnUrl);
 
-                        if (Url.IsLocalUrl(ReturnUrl))
-                        {
-                            return Redirect(ReturnUrl);
+                            }
+                        
+                            else
+                            {
+
+                                return RedirectToAction("Index", "Home");
+
+                            }
                         }
-
                         else
                         {
-                            
-                                return RedirectToAction("Index", "Home");
-                            
+                            Message = "Invalid credential provided";
                         }
                     }
                     else
@@ -156,15 +162,10 @@ namespace StudentService.Controllers
                         Message = "Invalid credential provided";
                     }
                 }
-                else
-                {
-                    Message = "Invalid credential provided";
-                }
+                ViewBag.Message = Message;
+                return View();
             }
-            ViewBag.Message = Message;
-            return View();
-        }
-
+        
 
 
         [Authorize]
@@ -179,7 +180,7 @@ namespace StudentService.Controllers
         [NonAction]
         public bool IsExsist(string email)
         {
-            using (StudentEntities dc = new StudentEntities()) {
+            using (StudentServiceEntities dc = new StudentServiceEntities()) {
                 var v = dc.Students.Where(a => a.Email == email).FirstOrDefault();
 
                 return v != null;

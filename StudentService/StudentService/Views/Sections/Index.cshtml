@@ -1,0 +1,63 @@
+﻿@model IEnumerable<StudentService.Models.Section>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AutoID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Semester)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Instructor.InstructorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Task.TaskPath)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AutoID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Semester)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Course.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Instructor.InstructorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Task.TaskPath)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SectionNo }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SectionNo }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SectionNo })
+        </td>
+    </tr>
+}
+
+</table>
