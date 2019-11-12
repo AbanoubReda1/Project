@@ -33,5 +33,6 @@ namespace StudentService.Models
         public virtual DbSet<StudentA> StudentAs { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<Type> Types { get; set; }
+        public virtual DbSet<Start> Starts { get; set; }
     }
 }

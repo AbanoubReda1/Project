@@ -89,6 +89,29 @@
     <Property Name="TypeDescription" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_Type" FromRole="Type" ToRole="Task" />
   </EntityType>
+  <EntityType Name="Start">
+    <Key>
+      <PropertyRef Name="CourseNo" />
+      <PropertyRef Name="InstructorNo" />
+      <PropertyRef Name="SectionNo" />
+      <PropertyRef Name="Semester" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="TaskNo" />
+    </Key>
+    <Property Name="CourseNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CrediteNo" Type="Int32" />
+    <Property Name="Syllabus" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="FKDCode" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="InstructorNo" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="InstructorName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="SectionNo" Type="Int32" Nullable="false" />
+    <Property Name="Semester" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Year" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="TaskNo" Type="Int64" Nullable="false" />
+    <Property Name="TaskPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="FKTypeCode" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+  </EntityType>
   <Association Name="FK_Course_Department">
     <End Role="Department" Type="Self.Department" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
@@ -180,6 +203,7 @@
     <EntitySet Name="StudentAs" EntityType="Self.StudentA" />
     <EntitySet Name="Tasks" EntityType="Self.Task" />
     <EntitySet Name="Types" EntityType="Self.Type" />
+    <EntitySet Name="Starts" EntityType="Self.Start" />
     <AssociationSet Name="FK_Course_Department" Association="Self.FK_Course_Department">
       <End Role="Department" EntitySet="Departments" />
       <End Role="Course" EntitySet="Courses" />

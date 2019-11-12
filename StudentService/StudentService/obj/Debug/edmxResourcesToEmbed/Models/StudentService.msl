@@ -85,5 +85,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Starts">
+      <EntityTypeMapping TypeName="StudentServiceModel.Start">
+        <MappingFragment StoreEntitySet="Start">
+          <ScalarProperty Name="CourseNo" ColumnName="CourseNo" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="CrediteNo" ColumnName="CrediteNo" />
+          <ScalarProperty Name="Syllabus" ColumnName="Syllabus" />
+          <ScalarProperty Name="FKDCode" ColumnName="FKDCode" />
+          <ScalarProperty Name="InstructorNo" ColumnName="InstructorNo" />
+          <ScalarProperty Name="InstructorName" ColumnName="InstructorName" />
+          <ScalarProperty Name="SectionNo" ColumnName="SectionNo" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="TaskNo" ColumnName="TaskNo" />
+          <ScalarProperty Name="TaskPath" ColumnName="TaskPath" />
+          <ScalarProperty Name="FKTypeCode" ColumnName="FKTypeCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -77,6 +77,31 @@
     <Property Name="TypeCode" Type="nchar" MaxLength="2" Nullable="false" />
     <Property Name="TypeDescription" Type="nvarchar" MaxLength="20" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'StudentService.dbo.Start' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Start">
+    <Key>
+      <PropertyRef Name="CourseNo" />
+      <PropertyRef Name="InstructorNo" />
+      <PropertyRef Name="SectionNo" />
+      <PropertyRef Name="Semester" />
+      <PropertyRef Name="Year" />
+      <PropertyRef Name="TaskNo" />
+    </Key>
+    <Property Name="CourseNo" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="CrediteNo" Type="int" />
+    <Property Name="Syllabus" Type="nvarchar" MaxLength="1000" />
+    <Property Name="FKDCode" Type="nchar" MaxLength="5" />
+    <Property Name="InstructorNo" Type="nchar" MaxLength="5" Nullable="false" />
+    <Property Name="InstructorName" Type="nvarchar" MaxLength="20" />
+    <Property Name="SectionNo" Type="int" Nullable="false" />
+    <Property Name="Semester" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Year" Type="nchar" MaxLength="4" Nullable="false" />
+    <Property Name="TaskNo" Type="bigint" Nullable="false" />
+    <Property Name="TaskPath" Type="nvarchar" MaxLength="1000" />
+    <Property Name="FKTypeCode" Type="nchar" MaxLength="2" />
+  </EntityType>
   <Association Name="FK_Course_Department">
     <End Role="Department" Type="Self.Department" Multiplicity="0..1">
       <OnDelete Action="Cascade" />
@@ -168,6 +193,23 @@
     <EntitySet Name="StudentA" EntityType="Self.StudentA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Start" EntityType="Self.Start" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Start].[CourseNo] AS [CourseNo], 
+    [Start].[Title] AS [Title], 
+    [Start].[CrediteNo] AS [CrediteNo], 
+    [Start].[Syllabus] AS [Syllabus], 
+    [Start].[FKDCode] AS [FKDCode], 
+    [Start].[InstructorNo] AS [InstructorNo], 
+    [Start].[InstructorName] AS [InstructorName], 
+    [Start].[SectionNo] AS [SectionNo], 
+    [Start].[Semester] AS [Semester], 
+    [Start].[Year] AS [Year], 
+    [Start].[TaskNo] AS [TaskNo], 
+    [Start].[TaskPath] AS [TaskPath], 
+    [Start].[FKTypeCode] AS [FKTypeCode]
+    FROM [dbo].[Start] AS [Start]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_Course_Department" Association="Self.FK_Course_Department">
       <End Role="Department" EntitySet="Department" />
       <End Role="Course" EntitySet="Course" />
