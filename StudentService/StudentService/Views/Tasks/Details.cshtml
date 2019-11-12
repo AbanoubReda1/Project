@@ -1,0 +1,34 @@
+﻿@model StudentService.Models.Task
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Task</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TaskPath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaskPath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type.TypeDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type.TypeDescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TaskNo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
