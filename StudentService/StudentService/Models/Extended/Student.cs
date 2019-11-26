@@ -11,6 +11,7 @@ namespace StudentService.Models
     {
         public string ConfiremPassword { get; set; }
     }
+    
     public class StudentMetadata
 
     {
@@ -33,6 +34,7 @@ namespace StudentService.Models
         public string Email { get; set; }
 
         [Display(Name = "Level")]
+        
         [Required(AllowEmptyStrings = false, ErrorMessage = "Department required")]
     
         public string Level { get; set; }
