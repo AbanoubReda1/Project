@@ -107,7 +107,6 @@ namespace StudentService.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-
             return View();
         }
 
