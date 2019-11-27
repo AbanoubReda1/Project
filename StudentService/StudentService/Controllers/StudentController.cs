@@ -170,7 +170,7 @@ namespace StudentService.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Logout()
+        public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", "Student");
