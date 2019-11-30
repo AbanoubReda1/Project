@@ -152,7 +152,6 @@ D:\Student_Service\Project\StudentService\StudentService\bin\System.Web.WebPages
 D:\Student_Service\Project\StudentService\StudentService\bin\Newtonsoft.Json.xml
 D:\Student_Service\Project\StudentService\StudentService\bin\Antlr3.Runtime.pdb
 D:\Student_Service\Project\StudentService\StudentService\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Student_Service\Project\StudentService\StudentService\obj\Debug\StudentService.csprojAssemblyReference.cache
 D:\Student_Service\Project\StudentService\StudentService\obj\Debug\StudentService.csproj.CopyComplete
 D:\Student_Service\Project\StudentService\StudentService\obj\Debug\StudentService.dll
 D:\Student_Service\Project\StudentService\StudentService\obj\Debug\StudentService.pdb
@@ -332,3 +331,4 @@ D:\Student_Service\Project\StudentService\StudentService\bin\Microsoft.Owin.xml
 D:\Student_Service\Project\StudentService\StudentService\bin\Microsoft.Owin.Security.xml
 D:\Student_Service\Project\StudentService\StudentService\bin\Microsoft.Owin.Security.Cookies.xml
 D:\Student_Service\Project\StudentService\StudentService\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Student_Service\Project\StudentService\StudentService\obj\Debug\StudentService.csprojAssemblyReference.cache

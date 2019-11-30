@@ -1,20 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="StudentServiceModelStoreContainer" CdmEntityContainer="StudentServiceEntities">
+  <EntityContainerMapping StorageEntityContainer="ESSModelStoreContainer" CdmEntityContainer="ESSEntities2">
     <EntitySetMapping Name="Courses">
-      <EntityTypeMapping TypeName="StudentServiceModel.Course">
+      <EntityTypeMapping TypeName="ESSModel.Course">
         <MappingFragment StoreEntitySet="Course">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="CourseNo" ColumnName="CourseNo" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="CrediteNo" ColumnName="CrediteNo" />
+          <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+          <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+          <ScalarProperty Name="CourseTitle" ColumnName="CourseTitle" />
+          <ScalarProperty Name="CrediteHour" ColumnName="CrediteHour" />
           <ScalarProperty Name="Syllabus" ColumnName="Syllabus" />
-          <ScalarProperty Name="FKDCode" ColumnName="FKDCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Departments">
-      <EntityTypeMapping TypeName="StudentServiceModel.Department">
+      <EntityTypeMapping TypeName="ESSModel.Department">
         <MappingFragment StoreEntitySet="Department">
           <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
           <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
@@ -22,85 +21,80 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Instructors">
-      <EntityTypeMapping TypeName="StudentServiceModel.Instructor">
+      <EntityTypeMapping TypeName="ESSModel.Instructor">
         <MappingFragment StoreEntitySet="Instructor">
-          <ScalarProperty Name="AutoId" ColumnName="AutoId" />
-          <ScalarProperty Name="InstructorNo" ColumnName="InstructorNo" />
+          <ScalarProperty Name="InstructorID" ColumnName="InstructorID" />
           <ScalarProperty Name="InstructorName" ColumnName="InstructorName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="ESSModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="RoleNumber" ColumnName="RoleNumber" />
+          <ScalarProperty Name="Role1" ColumnName="Role" />
+          <ScalarProperty Name="RoleDescription" ColumnName="RoleDescription" />
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Sections">
-      <EntityTypeMapping TypeName="StudentServiceModel.Section">
+      <EntityTypeMapping TypeName="ESSModel.Section">
         <MappingFragment StoreEntitySet="Section">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="SectionNo" ColumnName="SectionNo" />
+          <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+          <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+          <ScalarProperty Name="SectionNumber" ColumnName="SectionNumber" />
           <ScalarProperty Name="Semester" ColumnName="Semester" />
           <ScalarProperty Name="Year" ColumnName="Year" />
-          <ScalarProperty Name="FKCCode" ColumnName="FKCCode" />
-          <ScalarProperty Name="FKInCode" ColumnName="FKInCode" />
-          <ScalarProperty Name="FKTCode" ColumnName="FKTCode" />
+          <ScalarProperty Name="InstructorID" ColumnName="InstructorID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Students">
-      <EntityTypeMapping TypeName="StudentServiceModel.Student">
+      <EntityTypeMapping TypeName="ESSModel.Student">
         <MappingFragment StoreEntitySet="Student">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="Fname" ColumnName="Fname" />
-          <ScalarProperty Name="Lname" ColumnName="Lname" />
-          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
           <ScalarProperty Name="Level" ColumnName="Level" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="VerifyEmail" ColumnName="VerifyEmail" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="StudentAs">
-      <EntityTypeMapping TypeName="StudentServiceModel.StudentA">
-        <MappingFragment StoreEntitySet="StudentA">
-          <ScalarProperty Name="StuID" ColumnName="StuID" />
-          <ScalarProperty Name="SectionNo" ColumnName="SectionNo" />
+          <ScalarProperty Name="Verification" ColumnName="Verification" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Tasks">
-      <EntityTypeMapping TypeName="StudentServiceModel.Task">
+      <EntityTypeMapping TypeName="ESSModel.Task">
         <MappingFragment StoreEntitySet="Task">
-          <ScalarProperty Name="TaskNo" ColumnName="TaskNo" />
-          <ScalarProperty Name="TaskPath" ColumnName="TaskPath" />
-          <ScalarProperty Name="FKTypeCode" ColumnName="FKTypeCode" />
+          <ScalarProperty Name="TaskNumber" ColumnName="TaskNumber" />
+          <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+          <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+          <ScalarProperty Name="SectionNumber" ColumnName="SectionNumber" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="TaskHeader" ColumnName="TaskHeader" />
+          <ScalarProperty Name="TaskDetails" ColumnName="TaskDetails" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transcripts">
+      <EntityTypeMapping TypeName="ESSModel.Transcript">
+        <MappingFragment StoreEntitySet="Transcript">
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="SectionNumber" ColumnName="SectionNumber" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Types">
-      <EntityTypeMapping TypeName="StudentServiceModel.Type">
+      <EntityTypeMapping TypeName="ESSModel.Type">
         <MappingFragment StoreEntitySet="Type">
-          <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-          <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
-          <ScalarProperty Name="TypeDescription" ColumnName="TypeDescription" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Starts">
-      <EntityTypeMapping TypeName="StudentServiceModel.Start">
-        <MappingFragment StoreEntitySet="Start">
-          <ScalarProperty Name="CourseNo" ColumnName="CourseNo" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="CrediteNo" ColumnName="CrediteNo" />
-          <ScalarProperty Name="Syllabus" ColumnName="Syllabus" />
-          <ScalarProperty Name="FKDCode" ColumnName="FKDCode" />
-          <ScalarProperty Name="InstructorNo" ColumnName="InstructorNo" />
-          <ScalarProperty Name="InstructorName" ColumnName="InstructorName" />
-          <ScalarProperty Name="SectionNo" ColumnName="SectionNo" />
-          <ScalarProperty Name="Semester" ColumnName="Semester" />
-          <ScalarProperty Name="Year" ColumnName="Year" />
-          <ScalarProperty Name="TaskNo" ColumnName="TaskNo" />
-          <ScalarProperty Name="TaskPath" ColumnName="TaskPath" />
-          <ScalarProperty Name="FKTypeCode" ColumnName="FKTypeCode" />
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

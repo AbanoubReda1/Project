@@ -23,13 +23,13 @@ namespace StudentService.Controllers
         }
 
         // GET: Courses/Details/5
-        public async Task<ActionResult> Details(string id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = await db.Courses.FindAsync(id);
+            Course course = db.Courses.SingleOrDefault(m => m.CourseCode == id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -40,7 +40,7 @@ namespace StudentService.Controllers
         // GET: Courses/Create
         public ActionResult Create()
         {
-            ViewBag.FKDCode = new SelectList(db.Departments, "DepartmentCode", "DepartmentName");
+            ViewBag.DepartmentCode = new SelectList(db.Departments, "DepartmentCode", "DepartmentName");
             return View();
         }
 
@@ -49,7 +49,7 @@ namespace StudentService.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "AutoID,CourseNo,Title,CrediteNo,Syllabus,FKDCode")] Course course)
+        public async Task<ActionResult> Create([Bind(Include = "DepartmentCode,CourseCode,CourseTitle,CrediteHour,Syllabus")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -58,23 +58,24 @@ namespace StudentService.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.FKDCode = new SelectList(db.Departments, "DepartmentCode", "DepartmentName", course.FKDCode);
+            ViewBag.DepartmentCode = new SelectList(db.Departments, "DepartmentCode", "DepartmentName", course.DepartmentCode);
             return View(course);
         }
 
         // GET: Courses/Edit/5
-        public async Task<ActionResult> Edit(string id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = await db.Courses.FindAsync(id);
+          
+            Course course =  db.Courses.SingleOrDefault(m => m.CourseCode == id);
             if (course == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.FKDCode = new SelectList(db.Departments, "DepartmentCode", "DepartmentName", course.FKDCode);
+            ViewBag.DepartmentCode = new SelectList(db.Departments, "DepartmentCode", "DepartmentName", course.DepartmentCode);
             return View(course);
         }
 
@@ -83,7 +84,7 @@ namespace StudentService.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "AutoID,CourseNo,Title,CrediteNo,Syllabus,FKDCode")] Course course)
+        public async Task<ActionResult> Edit([Bind(Include = "DepartmentCode,CourseCode,CourseTitle,CrediteHour,Syllabus")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +92,7 @@ namespace StudentService.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.FKDCode = new SelectList(db.Departments, "DepartmentCode", "DepartmentName", course.FKDCode);
+            ViewBag.DepartmentCode = new SelectList(db.Departments, "DepartmentCode", "DepartmentName", course.DepartmentCode);
             return View(course);
         }
 

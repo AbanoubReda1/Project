@@ -176,11 +176,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InstructorsController.cs" />
-    <Compile Include="Controllers\SectionsController.cs" />
-    <Compile Include="Controllers\StartsController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
-    <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="Global.asax.cs">
@@ -198,16 +194,13 @@
       <DependentUpon>StudentService.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\login.cs" />
+    <Compile Include="Models\Role.cs">
+      <DependentUpon>StudentService.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Section.cs">
       <DependentUpon>StudentService.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Start.cs">
-      <DependentUpon>StudentService.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Student.cs">
-      <DependentUpon>StudentService.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\StudentA.cs">
       <DependentUpon>StudentService.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StudentService.Context.cs">
@@ -226,6 +219,9 @@
       <DependentUpon>StudentService.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Task.cs">
+      <DependentUpon>StudentService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Transcript.cs">
       <DependentUpon>StudentService.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Type.cs">
@@ -287,39 +283,29 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Student\VerifyAccount.cshtml" />
-    <Content Include="Views\Student\Registration.cshtml" />
     <Content Include="Views\Student\Login.cshtml" />
-    <Content Include="Views\Courses\Create.cshtml" />
-    <Content Include="Views\Courses\Delete.cshtml" />
-    <Content Include="Views\Courses\Details.cshtml" />
-    <Content Include="Views\Courses\Edit.cshtml" />
-    <Content Include="Views\Courses\Index.cshtml" />
-    <Content Include="Views\Students\Create.cshtml" />
-    <Content Include="Views\Students\Delete.cshtml" />
-    <Content Include="Views\Students\Details.cshtml" />
-    <Content Include="Views\Students\Edit.cshtml" />
-    <Content Include="Views\Students\Index.cshtml" />
-    <Content Include="Views\Sections\Create.cshtml" />
-    <Content Include="Views\Sections\Delete.cshtml" />
-    <Content Include="Views\Sections\Details.cshtml" />
-    <Content Include="Views\Sections\Edit.cshtml" />
-    <Content Include="Views\Sections\Index.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Student\Registration.cshtml" />
     <Content Include="Views\Instructors\Create.cshtml" />
     <Content Include="Views\Instructors\Delete.cshtml" />
     <Content Include="Views\Instructors\Details.cshtml" />
     <Content Include="Views\Instructors\Edit.cshtml" />
     <Content Include="Views\Instructors\Index.cshtml" />
+    <Content Include="Views\Transcripts\Create.cshtml" />
+    <Content Include="Views\Transcripts\Delete.cshtml" />
+    <Content Include="Views\Transcripts\Details.cshtml" />
+    <Content Include="Views\Transcripts\Edit.cshtml" />
+    <Content Include="Views\Transcripts\Index.cshtml" />
     <Content Include="Views\Tasks\Create.cshtml" />
     <Content Include="Views\Tasks\Delete.cshtml" />
     <Content Include="Views\Tasks\Details.cshtml" />
     <Content Include="Views\Tasks\Edit.cshtml" />
     <Content Include="Views\Tasks\Index.cshtml" />
-    <Content Include="Views\Starts\Create.cshtml" />
-    <Content Include="Views\Starts\Delete.cshtml" />
-    <Content Include="Views\Starts\Details.cshtml" />
-    <Content Include="Views\Starts\Edit.cshtml" />
-    <Content Include="Views\Starts\Index.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Courses\Create.cshtml" />
+    <Content Include="Views\Courses\Delete.cshtml" />
+    <Content Include="Views\Courses\Details.cshtml" />
+    <Content Include="Views\Courses\Edit.cshtml" />
+    <Content Include="Views\Courses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

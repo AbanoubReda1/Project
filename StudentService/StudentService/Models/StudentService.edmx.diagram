@@ -4,22 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bfda97f853bb47adb7c79d9cc40c1392" Name="Diagram1">
-        <EntityTypeShape EntityType="StudentServiceModel.Course" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudentServiceModel.Department" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudentServiceModel.Instructor" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudentServiceModel.Section" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudentServiceModel.Student" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudentServiceModel.StudentA" Width="1.5" PointX="7.5" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudentServiceModel.Task" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudentServiceModel.Type" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="StudentServiceModel.Start" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="StudentServiceModel.FK_Course_Department" ManuallyRouted="false" />
-        <AssociationConnector Association="StudentServiceModel.FK_Section_Course" ManuallyRouted="false" />
-        <AssociationConnector Association="StudentServiceModel.FK_Section_Instructor" ManuallyRouted="false" />
-        <AssociationConnector Association="StudentServiceModel.FK_Section_Task" ManuallyRouted="false" />
-        <AssociationConnector Association="StudentServiceModel.FK_StudentA_Section" ManuallyRouted="false" />
-        <AssociationConnector Association="StudentServiceModel.FK_Task_Type" ManuallyRouted="false" />
+      <Diagram DiagramId="d7e31933a85b41458884288bf19004b6" Name="Diagram1">
+        <EntityTypeShape EntityType="ESSModel.Course" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESSModel.Department" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESSModel.Instructor" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESSModel.Role" Width="1.5" PointX="10" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESSModel.Section" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESSModel.Student" Width="1.5" PointX="7.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESSModel.Task" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESSModel.Transcript" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ESSModel.Type" Width="1.5" PointX="5.25" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="ESSModel.FK_Course_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="ESSModel.FK_Section_Course" ManuallyRouted="false" />
+        <AssociationConnector Association="ESSModel.FK_Section_Instructor" ManuallyRouted="false" />
+        <AssociationConnector Association="ESSModel.FK_Role_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="ESSModel.FK_Task_Section" ManuallyRouted="false" />
+        <AssociationConnector Association="ESSModel.FK_Task_Type" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

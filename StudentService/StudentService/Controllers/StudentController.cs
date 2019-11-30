@@ -23,14 +23,14 @@ namespace StudentService.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Registration([Bind(Exclude = "VerifyEmail,ActivationCode")]Student student)
+        public ActionResult Registration([Bind(Exclude = "Verification,ActivationCode")]Student student)
         {
             bool Status = false;
             string Message = " ";
 
             if (ModelState.IsValid)
             {
-                var isExsist = IsExsist(student.Email);
+                var isExsist = IsExsist(student.StudentEmail);
                 if (isExsist)
                 {
                     ModelState.AddModelError("EmailExist", "Email is already Exist");
@@ -46,7 +46,7 @@ namespace StudentService.Controllers
                 student.Password = Crypto.Hash(student.Password);
                 student.ConfiremPassword = Crypto.Hash(student.ConfiremPassword);
                 #endregion
-                student.VerifyEmail = false;
+                student.Verification = false;
 
                 #region save data to data base
                 using (StudentServiceEntities dc = new StudentServiceEntities())
@@ -54,9 +54,9 @@ namespace StudentService.Controllers
                     dc.Students.Add(student);
                     dc.SaveChanges();
                     //Send Email to User
-                    sendemailverifiction(student.Email, student.ActivationCode.ToString());
+                    Sendemailverifiction(student.StudentEmail, student.ActivationCode.ToString());
                     Message = "Registration successfully done. Account activation link " +
-                        " has been sent to your email id:" + student.Email;
+                        " has been sent to your email id:" + student.StudentEmail;
                     Status = true;
 
                 }
@@ -87,7 +87,7 @@ namespace StudentService.Controllers
                 var v = dc.Students.Where(a => a.ActivationCode == new Guid(id)).FirstOrDefault();
                 if (v != null)
                 {
-                    v.VerifyEmail = true;
+                    v.Verification = true;
                     dc.SaveChanges();
                     Status = true;
 
@@ -105,7 +105,7 @@ namespace StudentService.Controllers
         }
         //login
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult login()
         {
             return View();
         }
@@ -120,10 +120,10 @@ namespace StudentService.Controllers
             string Message = "";
             using (StudentServiceEntities dc = new StudentServiceEntities())
             {
-                var v = dc.Students.Where(a => a.Email == login.Email).FirstOrDefault();
+                var v = dc.Students.Where(a => a.StudentEmail == login.StudentEmail).FirstOrDefault();
                 if (v != null)
                 {
-                    if (!v.VerifyEmail)
+                    if (!v.Verification)
                     {
                         ViewBag.Message = "Please verify your email first";
                         return View();
@@ -131,7 +131,7 @@ namespace StudentService.Controllers
                     if (string.Compare(Crypto.Hash(login.Password), v.Password) == 0)
                     {
                         int timeout = login.RememberMe ? 525600 : 20; // 525600 min = 1 year
-                        var ticket = new FormsAuthenticationTicket(login.Email, login.RememberMe, timeout);
+                        var ticket = new FormsAuthenticationTicket(login.StudentEmail, login.RememberMe, timeout);
                         string encrypted = FormsAuthentication.Encrypt(ticket);
                         var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
                         cookie.Expires = DateTime.Now.AddMinutes(timeout);
@@ -180,30 +180,30 @@ namespace StudentService.Controllers
         [NonAction]
         public bool IsExsist(string email)
         {
-            using (StudentServiceEntities dc = new StudentServiceEntities()) {
-                var v = dc.Students.Where(a => a.Email == email).FirstOrDefault();
+            using (StudentServiceEntities dc = new StudentServiceEntities())
+            {
+                var v = dc.Students.Where(a => a.StudentEmail == email).FirstOrDefault();
 
                 return v != null;
             }
         }
 
-
         [NonAction]
-        public void sendemailverifiction(string Email, string ActivationCode)
+        public void Sendemailverifiction(string StudentEmail, string ActivationCode)
         {
 
             var verifyURL = "/Student/VerifyAccount/" + ActivationCode;
             var link = Request.Url.AbsoluteUri.Replace(Request.Url.PathAndQuery, verifyURL);
             var fromEmail = new MailAddress("abanoubreda68@outlook.com", "Dotnet Awesome");
-            var toEmail = new MailAddress(Email);
+            var toEmail = new MailAddress(StudentEmail);
             var fromEmailPassword = "popo01282528521";
             string sbject = "Your account is Successfully Created";
             string body = "<br/><br/>We are excited to tell you that your Dotnet Awesome account is" +
           " successfully created. Please click on the below link to verify your account" +
           " <br/><br/><a href='" + link + "'>" + link + "</a> ";
 
-        var smtp = new SmtpClient
-        {
+            SmtpClient smtp = new SmtpClient
+            {
             Host = "smtp.outlook.com",
             Port = 587,
             EnableSsl = true,

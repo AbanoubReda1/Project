@@ -17,21 +17,19 @@ namespace StudentService.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Section()
         {
-            this.StudentAs = new HashSet<StudentA>();
+            this.Tasks = new HashSet<Task>();
         }
     
-        public int AutoID { get; set; }
-        public int SectionNo { get; set; }
+        public string DepartmentCode { get; set; }
+        public string CourseCode { get; set; }
+        public string SectionNumber { get; set; }
         public string Semester { get; set; }
         public string Year { get; set; }
-        public string FKCCode { get; set; }
-        public string FKInCode { get; set; }
-        public Nullable<long> FKTCode { get; set; }
+        public string InstructorID { get; set; }
     
         public virtual Course Course { get; set; }
         public virtual Instructor Instructor { get; set; }
-        public virtual Task Task { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StudentA> StudentAs { get; set; }
+        public virtual ICollection<Task> Tasks { get; set; }
     }
 }

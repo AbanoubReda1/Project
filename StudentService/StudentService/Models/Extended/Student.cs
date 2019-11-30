@@ -14,23 +14,25 @@ namespace StudentService.Models
     public class StudentMetadata
 
     {
+        [Display(Name = "Student ID")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Student ID required")]
+        [DataType(DataType.Text)]
+        public string StudentID { get; set; }
+
         [Display(Name ="First Name")]
         [Required(AllowEmptyStrings =false,ErrorMessage = "First Name required")]
         [DataType(DataType.Text)]
-        public string Fname { get; set; }
+        public string StudentName { get; set; }
 
-        [Display(Name = "Last Name")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Last Name required")]
-        [DataType(DataType.Text)]
-        public string Lname { get; set; }
+       
         [Display(Name = "PhoneNumber")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "PhoneNumber required")]
         [DataType(DataType.PhoneNumber)]
-        public string Telephone { get; set; }
+        public string Mobile { get; set; }
         [Display(Name = "E-Mail Address")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "E-Mail Address required")]
         [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
+        public string StudentEmail { get; set; }
 
         [Display(Name = "Level")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Department required")]
@@ -40,7 +42,7 @@ namespace StudentService.Models
         [Display(Name = "DateOfBirth")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "DateOFBirth required")]
         [DataType(DataType.Date)]
-        public string DOB { get; set; }
+        public string DateOfBirth { get; set; }
 
 
         [Display(Name = "Password ")]

@@ -12,20 +12,11 @@ namespace StudentService.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Start
+    public partial class Transcript
     {
-        public string CourseNo { get; set; }
-        public string Title { get; set; }
-        public Nullable<int> CrediteNo { get; set; }
-        public string Syllabus { get; set; }
-        public string FKDCode { get; set; }
-        public string InstructorNo { get; set; }
-        public string InstructorName { get; set; }
-        public int SectionNo { get; set; }
+        public string StudentID { get; set; }
+        public string SectionNumber { get; set; }
         public string Semester { get; set; }
         public string Year { get; set; }
-        public long TaskNo { get; set; }
-        public string TaskPath { get; set; }
-        public string FKTypeCode { get; set; }
     }
 }

@@ -28,11 +28,11 @@ namespace StudentService.Models
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Instructor> Instructors { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<Section> Sections { get; set; }
         public virtual DbSet<Student> Students { get; set; }
-        public virtual DbSet<StudentA> StudentAs { get; set; }
         public virtual DbSet<Task> Tasks { get; set; }
+        public virtual DbSet<Transcript> Transcripts { get; set; }
         public virtual DbSet<Type> Types { get; set; }
-        public virtual DbSet<Start> Starts { get; set; }
     }
 }

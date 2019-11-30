@@ -20,11 +20,15 @@ namespace StudentService.Models
             this.Tasks = new HashSet<Task>();
         }
     
-        public Nullable<int> AutoID { get; set; }
-        public string TypeCode { get; set; }
-        public string TypeDescription { get; set; }
+        public string TypeID { get; set; }
+        public string TypeName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Tasks { get; set; }
+
+        public static implicit operator System.Type(Type v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

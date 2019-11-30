@@ -14,18 +14,17 @@ namespace StudentService.Models
     
     public partial class Task
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Task()
-        {
-            this.Sections = new HashSet<Section>();
-        }
+        public string TaskNumber { get; set; }
+        public string DepartmentCode { get; set; }
+        public string CourseCode { get; set; }
+        public string SectionNumber { get; set; }
+        public string Semester { get; set; }
+        public string Year { get; set; }
+        public string TaskHeader { get; set; }
+        public string TaskDetails { get; set; }
+        public string Type { get; set; }
     
-        public long TaskNo { get; set; }
-        public string TaskPath { get; set; }
-        public string FKTypeCode { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Section> Sections { get; set; }
-        public virtual Type Type { get; set; }
+        public virtual Section Section { get; set; }
+        public virtual Type Type1 { get; set; }
     }
 }

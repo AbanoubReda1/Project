@@ -20,12 +20,11 @@ namespace StudentService.Models
             this.Sections = new HashSet<Section>();
         }
     
-        public int AutoID { get; set; }
-        public string CourseNo { get; set; }
-        public string Title { get; set; }
-        public Nullable<int> CrediteNo { get; set; }
+        public string DepartmentCode { get; set; }
+        public string CourseCode { get; set; }
+        public string CourseTitle { get; set; }
+        public string CrediteHour { get; set; }
         public string Syllabus { get; set; }
-        public string FKDCode { get; set; }
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

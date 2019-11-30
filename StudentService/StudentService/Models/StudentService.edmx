@@ -4,111 +4,105 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="StudentServiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ESSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Course">
           <Key>
-            <PropertyRef Name="CourseNo" />
+            <PropertyRef Name="DepartmentCode" />
+            <PropertyRef Name="CourseCode" />
           </Key>
-          <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CourseNo" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" />
-          <Property Name="CrediteNo" Type="int" />
+          <Property Name="DepartmentCode" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="CourseCode" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="CourseTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CrediteHour" Type="nchar" MaxLength="1" />
           <Property Name="Syllabus" Type="nvarchar" MaxLength="1000" />
-          <Property Name="FKDCode" Type="nchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="DepartmentCode" />
           </Key>
-          <Property Name="DepartmentCode" Type="nchar" MaxLength="5" Nullable="false" />
-          <Property Name="DepartmentName" Type="nvarchar" MaxLength="20" />
+          <Property Name="DepartmentCode" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="DepartmentName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Instructor">
           <Key>
-            <PropertyRef Name="InstructorNo" />
+            <PropertyRef Name="InstructorID" />
           </Key>
-          <Property Name="AutoId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InstructorNo" Type="nchar" MaxLength="5" Nullable="false" />
-          <Property Name="InstructorName" Type="nvarchar" MaxLength="20" />
+          <Property Name="InstructorID" Type="nchar" MaxLength="5" Nullable="false" />
+          <Property Name="InstructorName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleNumber" />
+          </Key>
+          <Property Name="RoleNumber" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoleDescription" Type="nvarchar(max)" />
+          <Property Name="StudentID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Section">
           <Key>
-            <PropertyRef Name="SectionNo" />
+            <PropertyRef Name="DepartmentCode" />
+            <PropertyRef Name="CourseCode" />
+            <PropertyRef Name="SectionNumber" />
+            <PropertyRef Name="Semester" />
+            <PropertyRef Name="Year" />
           </Key>
-          <Property Name="AutoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SectionNo" Type="int" Nullable="false" />
+          <Property Name="DepartmentCode" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="CourseCode" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="SectionNumber" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Semester" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Year" Type="nchar" MaxLength="4" Nullable="false" />
-          <Property Name="FKCCode" Type="nvarchar" MaxLength="10" />
-          <Property Name="FKInCode" Type="nchar" MaxLength="5" />
-          <Property Name="FKTCode" Type="bigint" />
+          <Property Name="Year" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="InstructorID" Type="nchar" MaxLength="5" Nullable="false" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
-            <PropertyRef Name="AutoID" />
+            <PropertyRef Name="StudentID" />
           </Key>
-          <Property Name="AutoID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Fname" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Lname" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Telephone" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="DOB" Type="datetime" Nullable="false" />
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="StudentName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
           <Property Name="Level" Type="varchar" MaxLength="1" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="256" Nullable="false" />
-          <Property Name="VerifyEmail" Type="bit" Nullable="false" />
+          <Property Name="Mobile" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="StudentEmail" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ActivationCode" Type="uniqueidentifier" Nullable="false" />
-        </EntityType>
-        <EntityType Name="StudentA">
-          <Key>
-            <PropertyRef Name="StuID" />
-            <PropertyRef Name="SectionNo" />
-          </Key>
-          <Property Name="StuID" Type="bigint" Nullable="false" />
-          <Property Name="SectionNo" Type="int" Nullable="false" />
+          <Property Name="Verification" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
-            <PropertyRef Name="TaskNo" />
+            <PropertyRef Name="TaskNumber" />
           </Key>
-          <Property Name="TaskNo" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TaskPath" Type="nvarchar" MaxLength="1000" />
-          <Property Name="FKTypeCode" Type="nchar" MaxLength="2" />
+          <Property Name="TaskNumber" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="DepartmentCode" Type="nchar" MaxLength="10" />
+          <Property Name="CourseCode" Type="nchar" MaxLength="10" />
+          <Property Name="SectionNumber" Type="nchar" MaxLength="10" />
+          <Property Name="Semester" Type="nchar" MaxLength="10" />
+          <Property Name="Year" Type="nchar" MaxLength="10" />
+          <Property Name="TaskHeader" Type="nvarchar(max)" />
+          <Property Name="TaskDetails" Type="nvarchar(max)" />
+          <Property Name="Type" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Transcript">
+          <Key>
+            <PropertyRef Name="StudentID" />
+            <PropertyRef Name="SectionNumber" />
+            <PropertyRef Name="Semester" />
+            <PropertyRef Name="Year" />
+          </Key>
+          <Property Name="StudentID" Type="nchar" MaxLength="8" Nullable="false" />
+          <Property Name="SectionNumber" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Semester" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Year" Type="nchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="Type">
           <Key>
-            <PropertyRef Name="TypeCode" />
+            <PropertyRef Name="TypeID" />
           </Key>
-          <Property Name="AutoID" Type="int" />
-          <Property Name="TypeCode" Type="nchar" MaxLength="2" Nullable="false" />
-          <Property Name="TypeDescription" Type="nvarchar" MaxLength="20" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'StudentService.dbo.Start' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Start">
-          <Key>
-            <PropertyRef Name="CourseNo" />
-            <PropertyRef Name="InstructorNo" />
-            <PropertyRef Name="SectionNo" />
-            <PropertyRef Name="Semester" />
-            <PropertyRef Name="Year" />
-            <PropertyRef Name="TaskNo" />
-          </Key>
-          <Property Name="CourseNo" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" />
-          <Property Name="CrediteNo" Type="int" />
-          <Property Name="Syllabus" Type="nvarchar" MaxLength="1000" />
-          <Property Name="FKDCode" Type="nchar" MaxLength="5" />
-          <Property Name="InstructorNo" Type="nchar" MaxLength="5" Nullable="false" />
-          <Property Name="InstructorName" Type="nvarchar" MaxLength="20" />
-          <Property Name="SectionNo" Type="int" Nullable="false" />
-          <Property Name="Semester" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Year" Type="nchar" MaxLength="4" Nullable="false" />
-          <Property Name="TaskNo" Type="bigint" Nullable="false" />
-          <Property Name="TaskPath" Type="nvarchar" MaxLength="1000" />
-          <Property Name="FKTypeCode" Type="nchar" MaxLength="2" />
+          <Property Name="TypeID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Course_Department">
-          <End Role="Department" Type="Self.Department" Multiplicity="0..1">
+          <End Role="Department" Type="Self.Department" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Course" Type="Self.Course" Multiplicity="*" />
@@ -117,61 +111,73 @@ warning 6002: The table/view 'StudentService.dbo.Start' does not have a primary 
               <PropertyRef Name="DepartmentCode" />
             </Principal>
             <Dependent Role="Course">
-              <PropertyRef Name="FKDCode" />
+              <PropertyRef Name="DepartmentCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Role_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Role" Type="Self.Role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentID" />
+            </Principal>
+            <Dependent Role="Role">
+              <PropertyRef Name="StudentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Section_Course">
-          <End Role="Course" Type="Self.Course" Multiplicity="0..1">
+          <End Role="Course" Type="Self.Course" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Section" Type="Self.Section" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
-              <PropertyRef Name="CourseNo" />
+              <PropertyRef Name="DepartmentCode" />
+              <PropertyRef Name="CourseCode" />
             </Principal>
             <Dependent Role="Section">
-              <PropertyRef Name="FKCCode" />
+              <PropertyRef Name="DepartmentCode" />
+              <PropertyRef Name="CourseCode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Section_Instructor">
-          <End Role="Instructor" Type="Self.Instructor" Multiplicity="0..1" />
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Section" Type="Self.Section" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Instructor">
-              <PropertyRef Name="InstructorNo" />
+              <PropertyRef Name="InstructorID" />
             </Principal>
             <Dependent Role="Section">
-              <PropertyRef Name="FKInCode" />
+              <PropertyRef Name="InstructorID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Section_Task">
-          <End Role="Task" Type="Self.Task" Multiplicity="0..1">
+        <Association Name="FK_Task_Section">
+          <End Role="Section" Type="Self.Section" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Section" Type="Self.Section" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Task">
-              <PropertyRef Name="TaskNo" />
-            </Principal>
-            <Dependent Role="Section">
-              <PropertyRef Name="FKTCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_StudentA_Section">
-          <End Role="Section" Type="Self.Section" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="StudentA" Type="Self.StudentA" Multiplicity="*" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Section">
-              <PropertyRef Name="SectionNo" />
+              <PropertyRef Name="DepartmentCode" />
+              <PropertyRef Name="CourseCode" />
+              <PropertyRef Name="SectionNumber" />
+              <PropertyRef Name="Semester" />
+              <PropertyRef Name="Year" />
             </Principal>
-            <Dependent Role="StudentA">
-              <PropertyRef Name="SectionNo" />
+            <Dependent Role="Task">
+              <PropertyRef Name="DepartmentCode" />
+              <PropertyRef Name="CourseCode" />
+              <PropertyRef Name="SectionNumber" />
+              <PropertyRef Name="Semester" />
+              <PropertyRef Name="Year" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -182,42 +188,30 @@ warning 6002: The table/view 'StudentService.dbo.Start' does not have a primary 
           <End Role="Task" Type="Self.Task" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Type">
-              <PropertyRef Name="TypeCode" />
+              <PropertyRef Name="TypeID" />
             </Principal>
             <Dependent Role="Task">
-              <PropertyRef Name="FKTypeCode" />
+              <PropertyRef Name="Type" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="StudentServiceModelStoreContainer">
+        <EntityContainer Name="ESSModelStoreContainer">
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Instructor" EntityType="Self.Instructor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Section" EntityType="Self.Section" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="StudentA" EntityType="Self.StudentA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transcript" EntityType="Self.Transcript" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Start" EntityType="Self.Start" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Start].[CourseNo] AS [CourseNo], 
-    [Start].[Title] AS [Title], 
-    [Start].[CrediteNo] AS [CrediteNo], 
-    [Start].[Syllabus] AS [Syllabus], 
-    [Start].[FKDCode] AS [FKDCode], 
-    [Start].[InstructorNo] AS [InstructorNo], 
-    [Start].[InstructorName] AS [InstructorName], 
-    [Start].[SectionNo] AS [SectionNo], 
-    [Start].[Semester] AS [Semester], 
-    [Start].[Year] AS [Year], 
-    [Start].[TaskNo] AS [TaskNo], 
-    [Start].[TaskPath] AS [TaskPath], 
-    [Start].[FKTypeCode] AS [FKTypeCode]
-    FROM [dbo].[Start] AS [Start]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Course_Department" Association="Self.FK_Course_Department">
             <End Role="Department" EntitySet="Department" />
             <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Role_Student" Association="Self.FK_Role_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Role" EntitySet="Role" />
           </AssociationSet>
           <AssociationSet Name="FK_Section_Course" Association="Self.FK_Section_Course">
             <End Role="Course" EntitySet="Course" />
@@ -227,13 +221,9 @@ warning 6002: The table/view 'StudentService.dbo.Start' does not have a primary 
             <End Role="Instructor" EntitySet="Instructor" />
             <End Role="Section" EntitySet="Section" />
           </AssociationSet>
-          <AssociationSet Name="FK_Section_Task" Association="Self.FK_Section_Task">
+          <AssociationSet Name="FK_Task_Section" Association="Self.FK_Task_Section">
+            <End Role="Section" EntitySet="Section" />
             <End Role="Task" EntitySet="Task" />
-            <End Role="Section" EntitySet="Section" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StudentA_Section" Association="Self.FK_StudentA_Section">
-            <End Role="Section" EntitySet="Section" />
-            <End Role="StudentA" EntitySet="StudentA" />
           </AssociationSet>
           <AssociationSet Name="FK_Task_Type" Association="Self.FK_Task_Type">
             <End Role="Type" EntitySet="Type" />
@@ -244,17 +234,17 @@ warning 6002: The table/view 'StudentService.dbo.Start' does not have a primary 
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="StudentServiceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ESSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Course">
           <Key>
-            <PropertyRef Name="CourseNo" />
+            <PropertyRef Name="DepartmentCode" />
+            <PropertyRef Name="CourseCode" />
           </Key>
-          <Property Name="AutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CourseNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CrediteNo" Type="Int32" />
+          <Property Name="DepartmentCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CourseCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CourseTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CrediteHour" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="Syllabus" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="FKDCode" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Course_Department" FromRole="Course" ToRole="Department" />
           <NavigationProperty Name="Sections" Relationship="Self.FK_Section_Course" FromRole="Course" ToRole="Section" />
         </EntityType>
@@ -262,103 +252,99 @@ warning 6002: The table/view 'StudentService.dbo.Start' does not have a primary 
           <Key>
             <PropertyRef Name="DepartmentCode" />
           </Key>
-          <Property Name="DepartmentCode" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="DepartmentName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Courses" Relationship="Self.FK_Course_Department" FromRole="Department" ToRole="Course" />
         </EntityType>
         <EntityType Name="Instructor">
           <Key>
-            <PropertyRef Name="InstructorNo" />
+            <PropertyRef Name="InstructorID" />
           </Key>
-          <Property Name="AutoId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InstructorNo" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="InstructorName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="InstructorID" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="InstructorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Sections" Relationship="Self.FK_Section_Instructor" FromRole="Instructor" ToRole="Section" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleNumber" />
+          </Key>
+          <Property Name="RoleNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Role1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoleDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Role_Student" FromRole="Role" ToRole="Student" />
         </EntityType>
         <EntityType Name="Section">
           <Key>
-            <PropertyRef Name="SectionNo" />
+            <PropertyRef Name="DepartmentCode" />
+            <PropertyRef Name="CourseCode" />
+            <PropertyRef Name="SectionNumber" />
+            <PropertyRef Name="Semester" />
+            <PropertyRef Name="Year" />
           </Key>
-          <Property Name="AutoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SectionNo" Type="Int32" Nullable="false" />
+          <Property Name="DepartmentCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CourseCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SectionNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Semester" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Year" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="FKCCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="FKInCode" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
-          <Property Name="FKTCode" Type="Int64" />
+          <Property Name="Year" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="InstructorID" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Course" Relationship="Self.FK_Section_Course" FromRole="Section" ToRole="Course" />
           <NavigationProperty Name="Instructor" Relationship="Self.FK_Section_Instructor" FromRole="Section" ToRole="Instructor" />
-          <NavigationProperty Name="Task" Relationship="Self.FK_Section_Task" FromRole="Section" ToRole="Task" />
-          <NavigationProperty Name="StudentAs" Relationship="Self.FK_StudentA_Section" FromRole="Section" ToRole="StudentA" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_Section" FromRole="Section" ToRole="Task" />
         </EntityType>
         <EntityType Name="Student">
           <Key>
-            <PropertyRef Name="AutoID" />
+            <PropertyRef Name="StudentID" />
           </Key>
-          <Property Name="AutoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="StudentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Level" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="VerifyEmail" Type="Boolean" Nullable="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="StudentEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ActivationCode" Type="Guid" Nullable="false" />
-        </EntityType>
-        <EntityType Name="StudentA">
-          <Key>
-            <PropertyRef Name="StuID" />
-            <PropertyRef Name="SectionNo" />
-          </Key>
-          <Property Name="StuID" Type="Int64" Nullable="false" />
-          <Property Name="SectionNo" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Section" Relationship="Self.FK_StudentA_Section" FromRole="StudentA" ToRole="Section" />
+          <Property Name="Verification" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_Role_Student" FromRole="Student" ToRole="Role" />
         </EntityType>
         <EntityType Name="Task">
           <Key>
-            <PropertyRef Name="TaskNo" />
+            <PropertyRef Name="TaskNumber" />
           </Key>
-          <Property Name="TaskNo" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TaskPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="FKTypeCode" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Sections" Relationship="Self.FK_Section_Task" FromRole="Task" ToRole="Section" />
-          <NavigationProperty Name="Type" Relationship="Self.FK_Task_Type" FromRole="Task" ToRole="Type" />
+          <Property Name="TaskNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="DepartmentCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CourseCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="SectionNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Semester" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Year" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TaskHeader" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TaskDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Section" Relationship="Self.FK_Task_Section" FromRole="Task" ToRole="Section" />
+          <NavigationProperty Name="Type1" Relationship="Self.FK_Task_Type" FromRole="Task" ToRole="Type" />
+        </EntityType>
+        <EntityType Name="Transcript">
+          <Key>
+            <PropertyRef Name="StudentID" />
+            <PropertyRef Name="SectionNumber" />
+            <PropertyRef Name="Semester" />
+            <PropertyRef Name="Year" />
+          </Key>
+          <Property Name="StudentID" Type="String" MaxLength="8" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SectionNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Semester" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Year" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Type">
           <Key>
-            <PropertyRef Name="TypeCode" />
+            <PropertyRef Name="TypeID" />
           </Key>
-          <Property Name="AutoID" Type="Int32" />
-          <Property Name="TypeCode" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="TypeDescription" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TypeID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Tasks" Relationship="Self.FK_Task_Type" FromRole="Type" ToRole="Task" />
         </EntityType>
-        <EntityType Name="Start">
-          <Key>
-            <PropertyRef Name="CourseNo" />
-            <PropertyRef Name="InstructorNo" />
-            <PropertyRef Name="SectionNo" />
-            <PropertyRef Name="Semester" />
-            <PropertyRef Name="Year" />
-            <PropertyRef Name="TaskNo" />
-          </Key>
-          <Property Name="CourseNo" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CrediteNo" Type="Int32" />
-          <Property Name="Syllabus" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="FKDCode" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
-          <Property Name="InstructorNo" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="InstructorName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="SectionNo" Type="Int32" Nullable="false" />
-          <Property Name="Semester" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Year" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="TaskNo" Type="Int64" Nullable="false" />
-          <Property Name="TaskPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="FKTypeCode" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
-        </EntityType>
         <Association Name="FK_Course_Department">
-          <End Role="Department" Type="Self.Department" Multiplicity="0..1">
+          <End Role="Department" Type="Self.Department" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Course" Type="Self.Course" Multiplicity="*" />
@@ -367,61 +353,73 @@ warning 6002: The table/view 'StudentService.dbo.Start' does not have a primary 
               <PropertyRef Name="DepartmentCode" />
             </Principal>
             <Dependent Role="Course">
-              <PropertyRef Name="FKDCode" />
+              <PropertyRef Name="DepartmentCode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Section_Course">
-          <End Role="Course" Type="Self.Course" Multiplicity="0..1">
+          <End Role="Course" Type="Self.Course" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="Section" Type="Self.Section" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Course">
-              <PropertyRef Name="CourseNo" />
+              <PropertyRef Name="DepartmentCode" />
+              <PropertyRef Name="CourseCode" />
             </Principal>
             <Dependent Role="Section">
-              <PropertyRef Name="FKCCode" />
+              <PropertyRef Name="DepartmentCode" />
+              <PropertyRef Name="CourseCode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Section_Instructor">
-          <End Role="Instructor" Type="Self.Instructor" Multiplicity="0..1" />
+          <End Role="Instructor" Type="Self.Instructor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Section" Type="Self.Section" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Instructor">
-              <PropertyRef Name="InstructorNo" />
+              <PropertyRef Name="InstructorID" />
             </Principal>
             <Dependent Role="Section">
-              <PropertyRef Name="FKInCode" />
+              <PropertyRef Name="InstructorID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Section_Task">
-          <End Role="Task" Type="Self.Task" Multiplicity="0..1">
+        <Association Name="FK_Role_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Section" Type="Self.Section" Multiplicity="*" />
+          <End Role="Role" Type="Self.Role" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Task">
-              <PropertyRef Name="TaskNo" />
+            <Principal Role="Student">
+              <PropertyRef Name="StudentID" />
             </Principal>
-            <Dependent Role="Section">
-              <PropertyRef Name="FKTCode" />
+            <Dependent Role="Role">
+              <PropertyRef Name="StudentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_StudentA_Section">
-          <End Role="Section" Type="Self.Section" Multiplicity="1">
+        <Association Name="FK_Task_Section">
+          <End Role="Section" Type="Self.Section" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="StudentA" Type="Self.StudentA" Multiplicity="*" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Section">
-              <PropertyRef Name="SectionNo" />
+              <PropertyRef Name="DepartmentCode" />
+              <PropertyRef Name="CourseCode" />
+              <PropertyRef Name="SectionNumber" />
+              <PropertyRef Name="Semester" />
+              <PropertyRef Name="Year" />
             </Principal>
-            <Dependent Role="StudentA">
-              <PropertyRef Name="SectionNo" />
+            <Dependent Role="Task">
+              <PropertyRef Name="DepartmentCode" />
+              <PropertyRef Name="CourseCode" />
+              <PropertyRef Name="SectionNumber" />
+              <PropertyRef Name="Semester" />
+              <PropertyRef Name="Year" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -432,23 +430,23 @@ warning 6002: The table/view 'StudentService.dbo.Start' does not have a primary 
           <End Role="Task" Type="Self.Task" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Type">
-              <PropertyRef Name="TypeCode" />
+              <PropertyRef Name="TypeID" />
             </Principal>
             <Dependent Role="Task">
-              <PropertyRef Name="FKTypeCode" />
+              <PropertyRef Name="Type" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="StudentServiceEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ESSEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Courses" EntityType="Self.Course" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="Instructors" EntityType="Self.Instructor" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="Sections" EntityType="Self.Section" />
           <EntitySet Name="Students" EntityType="Self.Student" />
-          <EntitySet Name="StudentAs" EntityType="Self.StudentA" />
           <EntitySet Name="Tasks" EntityType="Self.Task" />
+          <EntitySet Name="Transcripts" EntityType="Self.Transcript" />
           <EntitySet Name="Types" EntityType="Self.Type" />
-          <EntitySet Name="Starts" EntityType="Self.Start" />
           <AssociationSet Name="FK_Course_Department" Association="Self.FK_Course_Department">
             <End Role="Department" EntitySet="Departments" />
             <End Role="Course" EntitySet="Courses" />
@@ -461,13 +459,13 @@ warning 6002: The table/view 'StudentService.dbo.Start' does not have a primary 
             <End Role="Instructor" EntitySet="Instructors" />
             <End Role="Section" EntitySet="Sections" />
           </AssociationSet>
-          <AssociationSet Name="FK_Section_Task" Association="Self.FK_Section_Task">
-            <End Role="Task" EntitySet="Tasks" />
-            <End Role="Section" EntitySet="Sections" />
+          <AssociationSet Name="FK_Role_Student" Association="Self.FK_Role_Student">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Role" EntitySet="Roles" />
           </AssociationSet>
-          <AssociationSet Name="FK_StudentA_Section" Association="Self.FK_StudentA_Section">
+          <AssociationSet Name="FK_Task_Section" Association="Self.FK_Task_Section">
             <End Role="Section" EntitySet="Sections" />
-            <End Role="StudentA" EntitySet="StudentAs" />
+            <End Role="Task" EntitySet="Tasks" />
           </AssociationSet>
           <AssociationSet Name="FK_Task_Type" Association="Self.FK_Task_Type">
             <End Role="Type" EntitySet="Types" />
@@ -479,21 +477,20 @@ warning 6002: The table/view 'StudentService.dbo.Start' does not have a primary 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="StudentServiceModelStoreContainer" CdmEntityContainer="StudentServiceEntities">
+        <EntityContainerMapping StorageEntityContainer="ESSModelStoreContainer" CdmEntityContainer="ESSEntities2">
           <EntitySetMapping Name="Courses">
-            <EntityTypeMapping TypeName="StudentServiceModel.Course">
+            <EntityTypeMapping TypeName="ESSModel.Course">
               <MappingFragment StoreEntitySet="Course">
-                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-                <ScalarProperty Name="CourseNo" ColumnName="CourseNo" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="CrediteNo" ColumnName="CrediteNo" />
+                <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+                <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+                <ScalarProperty Name="CourseTitle" ColumnName="CourseTitle" />
+                <ScalarProperty Name="CrediteHour" ColumnName="CrediteHour" />
                 <ScalarProperty Name="Syllabus" ColumnName="Syllabus" />
-                <ScalarProperty Name="FKDCode" ColumnName="FKDCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="StudentServiceModel.Department">
+            <EntityTypeMapping TypeName="ESSModel.Department">
               <MappingFragment StoreEntitySet="Department">
                 <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
                 <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
@@ -501,85 +498,80 @@ warning 6002: The table/view 'StudentService.dbo.Start' does not have a primary 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Instructors">
-            <EntityTypeMapping TypeName="StudentServiceModel.Instructor">
+            <EntityTypeMapping TypeName="ESSModel.Instructor">
               <MappingFragment StoreEntitySet="Instructor">
-                <ScalarProperty Name="AutoId" ColumnName="AutoId" />
-                <ScalarProperty Name="InstructorNo" ColumnName="InstructorNo" />
+                <ScalarProperty Name="InstructorID" ColumnName="InstructorID" />
                 <ScalarProperty Name="InstructorName" ColumnName="InstructorName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="ESSModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleNumber" ColumnName="RoleNumber" />
+                <ScalarProperty Name="Role1" ColumnName="Role" />
+                <ScalarProperty Name="RoleDescription" ColumnName="RoleDescription" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sections">
-            <EntityTypeMapping TypeName="StudentServiceModel.Section">
+            <EntityTypeMapping TypeName="ESSModel.Section">
               <MappingFragment StoreEntitySet="Section">
-                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-                <ScalarProperty Name="SectionNo" ColumnName="SectionNo" />
+                <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+                <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+                <ScalarProperty Name="SectionNumber" ColumnName="SectionNumber" />
                 <ScalarProperty Name="Semester" ColumnName="Semester" />
                 <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="FKCCode" ColumnName="FKCCode" />
-                <ScalarProperty Name="FKInCode" ColumnName="FKInCode" />
-                <ScalarProperty Name="FKTCode" ColumnName="FKTCode" />
+                <ScalarProperty Name="InstructorID" ColumnName="InstructorID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Students">
-            <EntityTypeMapping TypeName="StudentServiceModel.Student">
+            <EntityTypeMapping TypeName="ESSModel.Student">
               <MappingFragment StoreEntitySet="Student">
-                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-                <ScalarProperty Name="Fname" ColumnName="Fname" />
-                <ScalarProperty Name="Lname" ColumnName="Lname" />
-                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="Level" ColumnName="Level" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="VerifyEmail" ColumnName="VerifyEmail" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="ActivationCode" ColumnName="ActivationCode" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StudentAs">
-            <EntityTypeMapping TypeName="StudentServiceModel.StudentA">
-              <MappingFragment StoreEntitySet="StudentA">
-                <ScalarProperty Name="StuID" ColumnName="StuID" />
-                <ScalarProperty Name="SectionNo" ColumnName="SectionNo" />
+                <ScalarProperty Name="Verification" ColumnName="Verification" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tasks">
-            <EntityTypeMapping TypeName="StudentServiceModel.Task">
+            <EntityTypeMapping TypeName="ESSModel.Task">
               <MappingFragment StoreEntitySet="Task">
-                <ScalarProperty Name="TaskNo" ColumnName="TaskNo" />
-                <ScalarProperty Name="TaskPath" ColumnName="TaskPath" />
-                <ScalarProperty Name="FKTypeCode" ColumnName="FKTypeCode" />
+                <ScalarProperty Name="TaskNumber" ColumnName="TaskNumber" />
+                <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+                <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
+                <ScalarProperty Name="SectionNumber" ColumnName="SectionNumber" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="TaskHeader" ColumnName="TaskHeader" />
+                <ScalarProperty Name="TaskDetails" ColumnName="TaskDetails" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transcripts">
+            <EntityTypeMapping TypeName="ESSModel.Transcript">
+              <MappingFragment StoreEntitySet="Transcript">
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="SectionNumber" ColumnName="SectionNumber" />
+                <ScalarProperty Name="Semester" ColumnName="Semester" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Types">
-            <EntityTypeMapping TypeName="StudentServiceModel.Type">
+            <EntityTypeMapping TypeName="ESSModel.Type">
               <MappingFragment StoreEntitySet="Type">
-                <ScalarProperty Name="AutoID" ColumnName="AutoID" />
-                <ScalarProperty Name="TypeCode" ColumnName="TypeCode" />
-                <ScalarProperty Name="TypeDescription" ColumnName="TypeDescription" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Starts">
-            <EntityTypeMapping TypeName="StudentServiceModel.Start">
-              <MappingFragment StoreEntitySet="Start">
-                <ScalarProperty Name="CourseNo" ColumnName="CourseNo" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="CrediteNo" ColumnName="CrediteNo" />
-                <ScalarProperty Name="Syllabus" ColumnName="Syllabus" />
-                <ScalarProperty Name="FKDCode" ColumnName="FKDCode" />
-                <ScalarProperty Name="InstructorNo" ColumnName="InstructorNo" />
-                <ScalarProperty Name="InstructorName" ColumnName="InstructorName" />
-                <ScalarProperty Name="SectionNo" ColumnName="SectionNo" />
-                <ScalarProperty Name="Semester" ColumnName="Semester" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-                <ScalarProperty Name="TaskNo" ColumnName="TaskNo" />
-                <ScalarProperty Name="TaskPath" ColumnName="TaskPath" />
-                <ScalarProperty Name="FKTypeCode" ColumnName="FKTypeCode" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

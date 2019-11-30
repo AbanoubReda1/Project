@@ -12,11 +12,13 @@ namespace StudentService.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class StudentA
+    public partial class Role
     {
-        public long StuID { get; set; }
-        public int SectionNo { get; set; }
+        public string RoleNumber { get; set; }
+        public string Role1 { get; set; }
+        public string RoleDescription { get; set; }
+        public int StudentID { get; set; }
     
-        public virtual Section Section { get; set; }
+        public virtual Student Student { get; set; }
     }
 }

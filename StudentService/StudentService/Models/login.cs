@@ -11,7 +11,7 @@ namespace StudentService.Models
         [Display(Name = "E-Mail Address")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "E-Mail Address required")]
         [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
+        public string StudentEmail { get; set; }
 
         [Display(Name = "Password ")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Password required")]
