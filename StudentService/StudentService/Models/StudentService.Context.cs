@@ -13,10 +13,10 @@ namespace StudentService.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ESSEntities2 : DbContext
+    public partial class StudentServiceEntities : DbContext
     {
-        public ESSEntities2()
-            : base("name=ESSEntities2")
+        public StudentServiceEntities()
+            : base("name=StudentServiceEntities")
         {
         }
     
