@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -13,13 +12,13 @@ namespace StudentService.Controllers
 {
     public class CoursesController : Controller
     {
-        private StudentServiceEntities db = new StudentServiceEntities();
+        private readonly StudentServiceEntities db = new StudentServiceEntities();
 
         // GET: Courses
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             var courses = db.Courses.Include(c => c.Department);
-            return View(await courses.ToListAsync());
+            return View(courses.ToList());
         }
 
         // GET: Courses/Details/5
@@ -29,7 +28,7 @@ namespace StudentService.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.SingleOrDefault(m => m.CourseCode == id);
+            Course course = db.Courses.FirstOrDefault(m => m.CourseCode == id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -49,12 +48,12 @@ namespace StudentService.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "DepartmentCode,CourseCode,CourseTitle,CrediteHour,Syllabus")] Course course)
+        public ActionResult Create([Bind(Include = "DepartmentCode,CourseCode,CourseTitle,CrediteHour,Syllabus")] Course course)
         {
             if (ModelState.IsValid)
             {
                 db.Courses.Add(course);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -69,8 +68,7 @@ namespace StudentService.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-          
-            Course course =  db.Courses.SingleOrDefault(m => m.CourseCode == id);
+            Course course = db.Courses.FirstOrDefault(m=>m.CourseCode==id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -84,12 +82,12 @@ namespace StudentService.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "DepartmentCode,CourseCode,CourseTitle,CrediteHour,Syllabus")] Course course)
+        public ActionResult Edit([Bind(Include = "DepartmentCode,CourseCode,CourseTitle,CrediteHour,Syllabus")] Course course)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(course).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.DepartmentCode = new SelectList(db.Departments, "DepartmentCode", "DepartmentName", course.DepartmentCode);
@@ -97,13 +95,13 @@ namespace StudentService.Controllers
         }
 
         // GET: Courses/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = await db.Courses.FindAsync(id);
+            Course course = db.Courses.FirstOrDefault(m => m.CourseCode == id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -114,11 +112,11 @@ namespace StudentService.Controllers
         // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            Course course = await db.Courses.FindAsync(id);
+            Course course = db.Courses.FirstOrDefault(m => m.CourseCode == id);
             db.Courses.Remove(course);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -13,23 +12,23 @@ namespace StudentService.Controllers
 {
     public class TasksController : Controller
     {
-        private StudentServiceEntities db = new StudentServiceEntities();
+        private  readonly StudentServiceEntities db = new StudentServiceEntities();
 
         // GET: Tasks
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             var tasks = db.Tasks.Include(t => t.Section).Include(t => t.Type1);
-            return View(await tasks.ToListAsync());
+            return View(tasks.ToList());
         }
 
         // GET: Tasks/Details/5
-        public async Task<ActionResult> Details(string id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Models.Task task = await db.Tasks.FindAsync(id);
+            Task task = db.Tasks.Find(id);
             if (task == null)
             {
                 return HttpNotFound();
@@ -40,8 +39,12 @@ namespace StudentService.Controllers
         // GET: Tasks/Create
         public ActionResult Create()
         {
-            ViewBag.DepartmentCode = new SelectList(db.Sections, "DepartmentCode", "InstructorID");
+            ViewBag.CourseCode = new SelectList(db.Courses, "CourseCode", "CourseTitle ");
+            ViewBag.DepartmentCode = new SelectList(db.Departments, "DepartmentCode", "DepartmentCode");
             ViewBag.Type = new SelectList(db.Types, "TypeID", "TypeName");
+            ViewBag.SectionNumber = new SelectList(db.Sections, "SectionNumber", "SectionNumber ");
+            ViewBag.Semester = new SelectList(db.Sections, "SectionNumber", "Semester ");
+            ViewBag.Year = new SelectList(db.Sections, "SectionNumber", "Year ");
             return View();
         }
 
@@ -50,28 +53,31 @@ namespace StudentService.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "TaskNumber,DepartmentCode,CourseCode,SectionNumber,Semester,Year,TaskHeader,TaskDetails,Type")] Models.Task task)
+        public ActionResult Create([Bind(Include = "TaskNumber,DepartmentCode,CourseCode,SectionNumber,Semester,Year,TaskHeader,TaskDetails,Type")] Task task)
         {
             if (ModelState.IsValid)
             {
                 db.Tasks.Add(task);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.DepartmentCode = new SelectList(db.Sections, "DepartmentCode", "InstructorID", task.DepartmentCode);
+            ViewBag.Year = new SelectList(db.Sections, "SectionNumber", "Year ", task.Section);
+            ViewBag.Semester = new SelectList(db.Sections, "SectionNumber", "Semester ", task.Semester);
+            ViewBag.SectionNumber = new SelectList(db.Sections, "SectionNumber", "SectionNumber ",task.Section);
+            ViewBag.CourseCode = new SelectList(db.Courses, "CourseCode", "CourseTitle ",task.CourseCode);
+            ViewBag.DepartmentCode = new SelectList(db.Departments, "DepartmentCode", "DepartmentCode", task.DepartmentCode);
             ViewBag.Type = new SelectList(db.Types, "TypeID", "TypeName", task.Type);
             return View(task);
         }
 
         // GET: Tasks/Edit/5
-        public async Task<ActionResult> Edit(string id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Models.Task task = await db.Tasks.FindAsync(id);
+            Task task = db.Tasks.Find(id);
             if (task == null)
             {
                 return HttpNotFound();
@@ -86,12 +92,12 @@ namespace StudentService.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "TaskNumber,DepartmentCode,CourseCode,SectionNumber,Semester,Year,TaskHeader,TaskDetails,Type")] Models.Task task)
+        public ActionResult Edit([Bind(Include = "TaskNumber,DepartmentCode,CourseCode,SectionNumber,Semester,Year,TaskHeader,TaskDetails,Type")] Task task)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(task).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             ViewBag.DepartmentCode = new SelectList(db.Sections, "DepartmentCode", "InstructorID", task.DepartmentCode);
@@ -100,13 +106,13 @@ namespace StudentService.Controllers
         }
 
         // GET: Tasks/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Models.Task task = await db.Tasks .FindAsync(id);
+            Task task = db.Tasks.Find(id);
             if (task == null)
             {
                 return HttpNotFound();
@@ -117,11 +123,11 @@ namespace StudentService.Controllers
         // POST: Tasks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            Models.Task task = await db.Tasks.FindAsync(id);
+            Task task = db.Tasks.Find(id);
             db.Tasks.Remove(task);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

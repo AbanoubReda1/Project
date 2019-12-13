@@ -25,10 +25,5 @@ namespace StudentService.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Tasks { get; set; }
-
-        public static implicit operator System.Type(Type v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

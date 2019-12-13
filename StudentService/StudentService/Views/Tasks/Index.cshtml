@@ -1,0 +1,51 @@
+﻿@model IEnumerable<StudentService.Models.Task>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TaskHeader)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaskDetails)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Section.InstructorID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type1.TypeName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskHeader)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskDetails)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Section.InstructorID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type1.TypeName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TaskNumber.Trim() }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TaskNumber.Trim() }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TaskNumber.Trim() })
+        </td>
+    </tr>
+}
+
+</table>
