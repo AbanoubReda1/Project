@@ -12,7 +12,7 @@ namespace StudentService.Controllers
 {
     public class TasksController : Controller
     {
-        private  readonly StudentServiceEntities db = new StudentServiceEntities();
+        private readonly StudentServiceEntities db = new StudentServiceEntities();
 
         // GET: Tasks
         public ActionResult Index()
@@ -48,9 +48,7 @@ namespace StudentService.Controllers
             return View();
         }
 
-        // POST: Tasks/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TaskNumber,DepartmentCode,CourseCode,SectionNumber,Semester,Year,TaskHeader,TaskDetails,Type")] Task task)
@@ -63,8 +61,8 @@ namespace StudentService.Controllers
             }
             ViewBag.Year = new SelectList(db.Sections, "SectionNumber", "Year ", task.Section);
             ViewBag.Semester = new SelectList(db.Sections, "SectionNumber", "Semester ", task.Semester);
-            ViewBag.SectionNumber = new SelectList(db.Sections, "SectionNumber", "SectionNumber ",task.Section);
-            ViewBag.CourseCode = new SelectList(db.Courses, "CourseCode", "CourseTitle ",task.CourseCode);
+            ViewBag.SectionNumber = new SelectList(db.Sections, "SectionNumber", "SectionNumber ", task.Section);
+            ViewBag.CourseCode = new SelectList(db.Courses, "CourseCode", "CourseTitle ", task.CourseCode);
             ViewBag.DepartmentCode = new SelectList(db.Departments, "DepartmentCode", "DepartmentCode", task.DepartmentCode);
             ViewBag.Type = new SelectList(db.Types, "TypeID", "TypeName", task.Type);
             return View(task);

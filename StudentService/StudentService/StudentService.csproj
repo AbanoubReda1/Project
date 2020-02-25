@@ -190,49 +190,49 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Course.cs">
-      <DependentUpon>StudentService.tt</DependentUpon>
+      <DependentUpon>E-StudentService.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Department.cs">
-      <DependentUpon>StudentService.tt</DependentUpon>
+      <DependentUpon>E-StudentService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\E-StudentService.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>E-StudentService.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\E-StudentService.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>E-StudentService.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\E-StudentService.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>E-StudentService.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Extended\Student.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Instructor.cs">
-      <DependentUpon>StudentService.tt</DependentUpon>
+      <DependentUpon>E-StudentService.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\login.cs" />
     <Compile Include="Models\Role.cs">
-      <DependentUpon>StudentService.tt</DependentUpon>
+      <DependentUpon>E-StudentService.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Section.cs">
-      <DependentUpon>StudentService.tt</DependentUpon>
+      <DependentUpon>E-StudentService.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Student.cs">
-      <DependentUpon>StudentService.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\StudentService.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StudentService.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\StudentService.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StudentService.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\StudentService.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>StudentService.edmx</DependentUpon>
+      <DependentUpon>E-StudentService.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Task.cs">
-      <DependentUpon>StudentService.tt</DependentUpon>
+      <DependentUpon>E-StudentService.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Transcript.cs">
-      <DependentUpon>StudentService.tt</DependentUpon>
+      <DependentUpon>E-StudentService.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Type.cs">
-      <DependentUpon>StudentService.tt</DependentUpon>
+      <DependentUpon>E-StudentService.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -245,24 +245,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\StudentService.Context.tt">
+    <Content Include="Models\E-StudentService.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StudentService.edmx</DependentUpon>
-      <LastGenOutput>StudentService.Context.cs</LastGenOutput>
+      <DependentUpon>E-StudentService.edmx</DependentUpon>
+      <LastGenOutput>E-StudentService.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\StudentService.tt">
+    <Content Include="Models\E-StudentService.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StudentService.edmx</DependentUpon>
-      <LastGenOutput>StudentService.cs</LastGenOutput>
+      <DependentUpon>E-StudentService.edmx</DependentUpon>
+      <LastGenOutput>E-StudentService.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\StudentService.edmx">
+    <EntityDeploy Include="Models\E-StudentService.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>StudentService.Designer.cs</LastGenOutput>
+      <LastGenOutput>E-StudentService.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\StudentService.edmx.diagram">
-      <DependentUpon>StudentService.edmx</DependentUpon>
+    <Content Include="Models\E-StudentService.edmx.diagram">
+      <DependentUpon>E-StudentService.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -303,10 +303,6 @@
     <Content Include="Views\Types\Details.cshtml" />
     <Content Include="Views\Types\Edit.cshtml" />
     <Content Include="Views\Types\Index.cshtml" />
-    <Content Include="Views\Tasks\Delete.cshtml" />
-    <Content Include="Views\Tasks\Details.cshtml" />
-    <Content Include="Views\Tasks\Edit.cshtml" />
-    <Content Include="Views\Tasks\Index.cshtml" />
     <Content Include="Views\Instructors\Create.cshtml" />
     <Content Include="Views\Instructors\Delete.cshtml" />
     <Content Include="Views\Instructors\Details.cshtml" />
@@ -333,6 +329,10 @@
     <Content Include="Views\Students\Index.cshtml" />
     <Content Include="Views\Sections\Create.cshtml" />
     <Content Include="Views\Tasks\Create.cshtml" />
+    <Content Include="Views\Tasks\Delete.cshtml" />
+    <Content Include="Views\Tasks\Details.cshtml" />
+    <Content Include="Views\Tasks\Edit.cshtml" />
+    <Content Include="Views\Tasks\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
