@@ -22,10 +22,10 @@ namespace StudentService.Models
     
         public string DepartmentCode { get; set; }
         public string CourseCode { get; set; }
-        public string SectionNumber { get; set; }
+        public int SectionNumber { get; set; }
         public string Semester { get; set; }
         public string Year { get; set; }
-        public string InstructorID { get; set; }
+        public int InstructorID { get; set; }
     
         public virtual Course Course { get; set; }
         public virtual Instructor Instructor { get; set; }

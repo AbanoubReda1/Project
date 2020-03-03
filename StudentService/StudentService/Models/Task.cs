@@ -14,10 +14,10 @@ namespace StudentService.Models
     
     public partial class Task
     {
-        public string TaskNumber { get; set; }
+        public int TaskNumber { get; set; }
         public string DepartmentCode { get; set; }
         public string CourseCode { get; set; }
-        public string SectionNumber { get; set; }
+        public Nullable<int> SectionNumber { get; set; }
         public string Semester { get; set; }
         public string Year { get; set; }
         public string TaskHeader { get; set; }

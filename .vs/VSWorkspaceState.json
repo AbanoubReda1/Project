@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\StudentService",
+    "\\StudentService\\StudentService",
+    "\\StudentService\\StudentService\\App_Start",
+    "\\StudentService\\StudentService\\Views",
+    "\\StudentService\\StudentService\\Views\\Courses",
+    "\\StudentService\\StudentService\\Views\\Departments"
+  ],
+  "PreviewInSolutionExplorer": false
+}

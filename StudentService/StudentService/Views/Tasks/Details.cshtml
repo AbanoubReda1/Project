@@ -27,11 +27,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Section.InstructorID)
+            @Html.DisplayNameFor(model => model.Section.DepartmentCode)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Section.InstructorID)
+            @Html.DisplayFor(model => model.Section.DepartmentCode)
         </dd>
 
         <dt>
@@ -45,6 +45,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TaskNumber.Trim() }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TaskNumber }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

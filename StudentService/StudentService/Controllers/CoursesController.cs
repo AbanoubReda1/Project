@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -12,7 +13,7 @@ namespace StudentService.Controllers
 {
     public class CoursesController : Controller
     {
-        private readonly StudentServiceEntities db = new StudentServiceEntities();
+        private StudentServiceEntities db = new StudentServiceEntities();
 
         // GET: Courses
         public ActionResult Index()
@@ -28,7 +29,7 @@ namespace StudentService.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.FirstOrDefault(m => m.CourseCode == id);
+            Course course = db.Courses.FirstOrDefault(a => a.CourseCode == id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -48,14 +49,30 @@ namespace StudentService.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DepartmentCode,CourseCode,CourseTitle,CrediteHour,Syllabus")] Course course)
+        public ActionResult Create(Course course)
         {
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
+            //{
+            //    db.Courses.Add(course);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+            string fileName = Path.GetFileNameWithoutExtension(course.file.FileName);
+            string extension = Path.GetExtension(course.file.FileName);
+            fileName = fileName + DateTime.Now.ToString("yymmssff") + extension;
+            course.Syllabus = "~/uploads/" + fileName;
+            fileName = Path.Combine(Server.MapPath("~/uploads/"), fileName);
+            course.file.SaveAs(fileName);
+            using(StudentServiceEntities db=new StudentServiceEntities())
             {
                 db.Courses.Add(course);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+
             }
+
+
+            ModelState.Clear();
 
             ViewBag.DepartmentCode = new SelectList(db.Departments, "DepartmentCode", "DepartmentName", course.DepartmentCode);
             return View(course);
@@ -68,7 +85,7 @@ namespace StudentService.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.FirstOrDefault(m=>m.CourseCode==id);
+            Course course = db.Courses.FirstOrDefault(a => a.CourseCode == id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -101,7 +118,7 @@ namespace StudentService.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Course course = db.Courses.FirstOrDefault(m => m.CourseCode == id);
+            Course course = db.Courses.FirstOrDefault(a => a.CourseCode == id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -114,7 +131,7 @@ namespace StudentService.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Course course = db.Courses.FirstOrDefault(m => m.CourseCode == id);
+            Course course = db.Courses.FirstOrDefault(a => a.CourseCode == id);
             db.Courses.Remove(course);
             db.SaveChanges();
             return RedirectToAction("Index");

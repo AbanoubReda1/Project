@@ -20,18 +20,27 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                 
+                    
                 </ul>
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Courses", "Index", "Courses")</li>
-                    <li>@Html.ActionLink("Instructors", "Index", "Instructors")</li>
-                    <li>@Html.ActionLink("Sections", "Index", "Sections")</li>
-                    <li>@Html.ActionLink("Tasks", "Index", "Tasks")</li>
-                    <li>@Html.ActionLink("All Users", "Index", "`1Students")</li>
-                    <li>@Html.ActionLink("Type", "Index", "Types")</li>
-                </ul>
+               @if(User.Identity.IsAuthenticated)
+               {
+                   if(User.IsInRole("Admin"))
+                   {
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Courses", "Index", "Courses")</li>
+                <li>@Html.ActionLink("Instructors", "Index", "Instructors")</li>
+                <li>@Html.ActionLink("Sections", "Index", "Sections")</li>
+                <li>@Html.ActionLink("Tasks", "Index", "Tasks")</li>
+                <li>@Html.ActionLink("All Users", "Index", "Students")</li>
+                <li>@Html.ActionLink("Type", "Index", "Types")</li>
+                <li>@Html.ActionLink("Departments", "Index", "Departments")</li>
+                <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
+            </ul>
+                   }
+
+               }
+                
                 <ul class="nav navbar-nav navbar-right">
                      @Html.Partial("_LoginPartial")
 

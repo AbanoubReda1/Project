@@ -29,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.Instructor.InstructorName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.SectionNumber.Trim()  }) |
-            @Html.ActionLink("Details", "Details", new {id=item.SectionNumber.Trim()}) |
-            @Html.ActionLink("Delete", "Delete", new {id=item.SectionNumber.Trim() })
+            @Html.ActionLink("Edit", "Edit", new {  id=item.SectionNumber }) |
+            @Html.ActionLink("Details", "Details", new {id=item.SectionNumber}) |
+            @Html.ActionLink("Delete", "Delete", new {id=item.SectionNumber })
         </td>
     </tr>
 }

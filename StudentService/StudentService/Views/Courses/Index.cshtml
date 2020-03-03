@@ -41,9 +41,9 @@
             @Html.DisplayFor(modelItem => item.Department.DepartmentName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CourseCode.Trim()  })   |
-            @Html.ActionLink("Details", "Details", new {  id=item.CourseCode.Trim()   })   |
-            @Html.ActionLink("Delete", "Delete", new {  id=item.CourseCode.Trim()  })
+            @Html.ActionLink("Edit", "Edit", new {  id=item.CourseCode}) |
+            @Html.ActionLink("Details", "Details", new {  id=item.CourseCode }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CourseCode })
         </td>
     </tr>
 }

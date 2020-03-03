@@ -16,8 +16,8 @@ namespace StudentService.Models
     {
         public string RoleNumber { get; set; }
         public string Role1 { get; set; }
-        public string RoleDescription { get; set; }
         public string StudentID { get; set; }
+        public string RoleDescription { get; set; }
     
         public virtual Student Student { get; set; }
     }

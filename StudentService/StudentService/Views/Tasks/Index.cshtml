@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.TaskDetails)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Section.InstructorID)
+            @Html.DisplayNameFor(model => model.Section.DepartmentCode)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Type1.TypeName)
@@ -35,15 +35,15 @@
             @Html.DisplayFor(modelItem => item.TaskDetails)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Section.InstructorID)
+            @Html.DisplayFor(modelItem => item.Section.DepartmentCode)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Type1.TypeName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TaskNumber.Trim() }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TaskNumber.Trim() }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TaskNumber.Trim() })
+            @Html.ActionLink("Edit", "Edit", new { id=item.TaskNumber }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TaskNumber }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TaskNumber })
         </td>
     </tr>
 }

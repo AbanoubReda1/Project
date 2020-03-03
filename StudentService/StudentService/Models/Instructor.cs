@@ -20,7 +20,7 @@ namespace StudentService.Models
             this.Sections = new HashSet<Section>();
         }
     
-        public string InstructorID { get; set; }
+        public int InstructorID { get; set; }
         public string InstructorName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

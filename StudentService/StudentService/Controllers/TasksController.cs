@@ -12,7 +12,7 @@ namespace StudentService.Controllers
 {
     public class TasksController : Controller
     {
-        private readonly StudentServiceEntities db = new StudentServiceEntities();
+        private StudentServiceEntities db = new StudentServiceEntities();
 
         // GET: Tasks
         public ActionResult Index()
@@ -22,7 +22,7 @@ namespace StudentService.Controllers
         }
 
         // GET: Tasks/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -39,16 +39,18 @@ namespace StudentService.Controllers
         // GET: Tasks/Create
         public ActionResult Create()
         {
-            ViewBag.CourseCode = new SelectList(db.Courses, "CourseCode", "CourseTitle ");
-            ViewBag.DepartmentCode = new SelectList(db.Departments, "DepartmentCode", "DepartmentCode");
-            ViewBag.Type = new SelectList(db.Types, "TypeID", "TypeName");
-            ViewBag.SectionNumber = new SelectList(db.Sections, "SectionNumber", "SectionNumber ");
-            ViewBag.Semester = new SelectList(db.Sections, "SectionNumber", "Semester ");
-            ViewBag.Year = new SelectList(db.Sections, "SectionNumber", "Year ");
+            ViewBag.DepartmentCode = new SelectList(db.Sections, "DepartmentCode", "DepartmentCode");
+            ViewBag.CourseCode = new SelectList(db.Sections, "CourseCode", "CourseCode");
+            ViewBag.SectionNumber = new SelectList(db.Sections, "SectionNumber", "SectionNumber");
+            ViewBag.Semester = new SelectList(db.Sections, "Semester", "Semester");
+            ViewBag.Year = new SelectList(db.Sections, "Year", "Year");
+            ViewBag.Type = new SelectList(db.Types, "TypeID", "TypeID");
             return View();
         }
 
-        
+        // POST: Tasks/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TaskNumber,DepartmentCode,CourseCode,SectionNumber,Semester,Year,TaskHeader,TaskDetails,Type")] Task task)
@@ -59,17 +61,17 @@ namespace StudentService.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Year = new SelectList(db.Sections, "SectionNumber", "Year ", task.Section);
-            ViewBag.Semester = new SelectList(db.Sections, "SectionNumber", "Semester ", task.Semester);
-            ViewBag.SectionNumber = new SelectList(db.Sections, "SectionNumber", "SectionNumber ", task.Section);
-            ViewBag.CourseCode = new SelectList(db.Courses, "CourseCode", "CourseTitle ", task.CourseCode);
             ViewBag.DepartmentCode = new SelectList(db.Departments, "DepartmentCode", "DepartmentCode", task.DepartmentCode);
-            ViewBag.Type = new SelectList(db.Types, "TypeID", "TypeName", task.Type);
+            ViewBag.CourseCode = new SelectList(db.Sections, "CourseCode", "CourseCode", task.CourseCode);
+            ViewBag.SectionNumber = new SelectList(db.Sections, "SectionNumber", "SectionNumber", task.SectionNumber);
+            ViewBag.Semester = new SelectList(db.Sections, "Semester", "Semester", task.Semester);
+            ViewBag.Year = new SelectList(db.Sections, "Year", "Year", task.Year);
+            ViewBag.Type = new SelectList(db.Types, "TypeID", "TypeID", task.Type);
             return View(task);
         }
 
         // GET: Tasks/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -80,7 +82,7 @@ namespace StudentService.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DepartmentCode = new SelectList(db.Sections, "DepartmentCode", "InstructorID", task.DepartmentCode);
+            ViewBag.DepartmentCode = new SelectList(db.Sections, "DepartmentCode", "DepartmentCode", task.DepartmentCode);
             ViewBag.Type = new SelectList(db.Types, "TypeID", "TypeName", task.Type);
             return View(task);
         }
@@ -98,13 +100,13 @@ namespace StudentService.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DepartmentCode = new SelectList(db.Sections, "DepartmentCode", "InstructorID", task.DepartmentCode);
+            ViewBag.DepartmentCode = new SelectList(db.Sections, "DepartmentCode", "DepartmentCode", task.DepartmentCode);
             ViewBag.Type = new SelectList(db.Types, "TypeID", "TypeName", task.Type);
             return View(task);
         }
 
         // GET: Tasks/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -121,7 +123,7 @@ namespace StudentService.Controllers
         // POST: Tasks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Task task = db.Tasks.Find(id);
             db.Tasks.Remove(task);

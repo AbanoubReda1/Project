@@ -28,7 +28,7 @@ namespace StudentService.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Section section = db.Sections.SingleOrDefault(m => m.SectionNumber == id);
+            Section section = db.Sections.Find(id);
             if (section == null)
             {
                 return HttpNotFound();
@@ -72,7 +72,7 @@ namespace StudentService.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Section section = db.Sections.SingleOrDefault(m => m.SectionNumber == id);
+            Section section = db.Sections.Find(id);
             if (section == null)
             {
                 return HttpNotFound();
@@ -107,7 +107,7 @@ namespace StudentService.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Section section = db.Sections.SingleOrDefault(m => m.SectionNumber == id);
+            Section section = db.Sections.Find(id);
             if (section == null)
             {
                 return HttpNotFound();
@@ -120,7 +120,7 @@ namespace StudentService.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            Section section = db.Sections.SingleOrDefault(m => m.SectionNumber == id);
+            Section section = db.Sections.Find(id);
             db.Sections.Remove(section);
             db.SaveChanges();
             return RedirectToAction("Index");
