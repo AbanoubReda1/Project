@@ -175,73 +175,80 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\CoursesController.cs" />
-    <Compile Include="Controllers\DepartmentsController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InstructorsController.cs" />
-    <Compile Include="Controllers\ProjectsController.cs" />
-    <Compile Include="Controllers\SectionsController.cs" />
-    <Compile Include="Controllers\StdCourseController.cs" />
-    <Compile Include="Controllers\StudentController.cs" />
-    <Compile Include="Controllers\StudentsController.cs" />
-    <Compile Include="Controllers\TasksController.cs" />
-    <Compile Include="Controllers\TranscriptsController.cs" />
-    <Compile Include="Controllers\TypesController.cs" />
+    <Compile Include="Controllers\Admin\CoursesController.cs" />
+    <Compile Include="Controllers\Admin\DepartmentsController.cs" />
+    <Compile Include="Controllers\Admin\HomeController.cs" />
+    <Compile Include="Controllers\Admin\InstructorsController.cs" />
+    <Compile Include="Controllers\Admin\MaterialsController.cs" />
+    <Compile Include="Controllers\Admin\ProjectsController.cs" />
+    <Compile Include="Controllers\Admin\SectionsController.cs" />
+    <Compile Include="Controllers\StdMaterialsController.cs" />
+    <Compile Include="Controllers\StudentCon\StdTaskController.cs" />
+    <Compile Include="Controllers\StudentCon\StudeCourseController.cs" />
+    <Compile Include="Controllers\Admin\StudentController.cs" />
+    <Compile Include="Controllers\Admin\StudentsController.cs" />
+    <Compile Include="Controllers\Admin\TasksController.cs" />
+    <Compile Include="Controllers\Admin\TranscriptsController.cs" />
+    <Compile Include="Controllers\Admin\TypesController.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Course.cs">
-      <DependentUpon>StudentServiceModels.tt</DependentUpon>
+      <DependentUpon>Student_Service.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CourseRetrive.cs" />
     <Compile Include="Models\Department.cs">
-      <DependentUpon>StudentServiceModels.tt</DependentUpon>
+      <DependentUpon>Student_Service.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Extended\Student.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Instructor.cs">
-      <DependentUpon>StudentServiceModels.tt</DependentUpon>
+      <DependentUpon>Student_Service.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\login.cs" />
+    <Compile Include="Models\loginRegister.cs" />
+    <Compile Include="Models\Material.cs">
+      <DependentUpon>Student_Service.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Project.cs">
-      <DependentUpon>StudentServiceModels.tt</DependentUpon>
+      <DependentUpon>Student_Service.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Role.cs">
-      <DependentUpon>StudentServiceModels.tt</DependentUpon>
+      <DependentUpon>Student_Service.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Section.cs">
-      <DependentUpon>StudentServiceModels.tt</DependentUpon>
+      <DependentUpon>Student_Service.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Student.cs">
-      <DependentUpon>StudentServiceModels.tt</DependentUpon>
+      <DependentUpon>Student_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\StudentServiceModels.Context.cs">
+    <Compile Include="Models\Student_Service.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StudentServiceModels.Context.tt</DependentUpon>
+      <DependentUpon>Student_Service.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\StudentServiceModels.cs">
+    <Compile Include="Models\Student_Service.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StudentServiceModels.tt</DependentUpon>
+      <DependentUpon>Student_Service.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\StudentServiceModels.Designer.cs">
+    <Compile Include="Models\Student_Service.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>StudentServiceModels.edmx</DependentUpon>
+      <DependentUpon>Student_Service.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>StudentServiceModels.tt</DependentUpon>
+      <DependentUpon>Student_Service.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Task.cs">
-      <DependentUpon>StudentServiceModels.tt</DependentUpon>
+      <DependentUpon>Student_Service.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Transcript.cs">
-      <DependentUpon>StudentServiceModels.tt</DependentUpon>
+      <DependentUpon>Student_Service.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Type.cs">
-      <DependentUpon>StudentServiceModels.tt</DependentUpon>
+      <DependentUpon>Student_Service.tt</DependentUpon>
     </Compile>
     <Compile Include="myRoleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -371,19 +378,25 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\login.css" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\StudentServiceModels.Context.tt">
+    <Content Include="img\bg.jpg" />
+    <Content Include="img\circle_close_delete_-128.png" />
+    <Content Include="img\images.png" />
+    <Content Include="img\login-w-icon.png" />
+    <Content Include="Models\Student_Service.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StudentServiceModels.edmx</DependentUpon>
-      <LastGenOutput>StudentServiceModels.Context.cs</LastGenOutput>
+      <DependentUpon>Student_Service.edmx</DependentUpon>
+      <LastGenOutput>Student_Service.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\StudentServiceModels.tt">
+    <Content Include="Models\Student_Service.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>StudentServiceModels.edmx</DependentUpon>
-      <LastGenOutput>StudentServiceModels.cs</LastGenOutput>
+      <DependentUpon>Student_Service.edmx</DependentUpon>
+      <LastGenOutput>Student_Service.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -398,12 +411,12 @@
     <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
     <Content Include="bin\StudentService.dll.config" />
-    <EntityDeploy Include="Models\StudentServiceModels.edmx">
+    <EntityDeploy Include="Models\Student_Service.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>StudentServiceModels.Designer.cs</LastGenOutput>
+      <LastGenOutput>Student_Service.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\StudentServiceModels.edmx.diagram">
-      <DependentUpon>StudentServiceModels.edmx</DependentUpon>
+    <Content Include="Models\Student_Service.edmx.diagram">
+      <DependentUpon>Student_Service.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -416,6 +429,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="img\pdf.png" />
+    <Content Include="Scripts\script.js" />
+    <Content Include="Scripts\tweenMax.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -479,7 +495,15 @@
     <Content Include="Views\Projects\Details.cshtml" />
     <Content Include="Views\Projects\Edit.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
-    <Content Include="Views\StdCourse\Index.cshtml" />
+    <Content Include="Views\StdTask\Index.cshtml" />
+    <Content Include="Views\Materials\Index.cshtml" />
+    <Content Include="Views\Materials\Details.cshtml" />
+    <Content Include="Views\Materials\Edit.cshtml" />
+    <Content Include="Views\Materials\Create.cshtml" />
+    <Content Include="Views\Materials\Delete.cshtml" />
+    <Content Include="Views\StdMaterials\Index.cshtml" />
+    <Content Include="Views\StudeCourse\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

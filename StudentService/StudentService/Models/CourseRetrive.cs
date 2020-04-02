@@ -9,5 +9,7 @@ namespace StudentService.Models
     {
         public string DepartmentCode { get; set; }
         public string CourseCode { get; set; }
+        public string Syllabus { get; set; }
+
     }
 }

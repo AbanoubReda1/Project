@@ -26,7 +26,7 @@ namespace StudentService.Models
         public string CourseTitle { get; set; }
         public string CrediteHour { get; set; }
         public string Syllabus { get; set; }
-        public HttpPostedFileBase file { get; set; }
+        public HttpPostedFileBase file   { get; set; }
 
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

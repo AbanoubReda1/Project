@@ -1,0 +1,93 @@
+﻿@model IEnumerable<StudentService.Models.Material>
+
+@{
+    ViewBag.Title = "Materials";
+}
+<centr><h3>Materials</h3></centr>
+
+<br/>
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+
+        <div class="form-group col-lg-4">
+
+
+            @Html.DropDownList("DepartmentCode", ViewBag.Departmentlist as SelectList, "Select Department", htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        <div class="form-group col-lg-4">
+
+
+
+
+            @Html.DropDownList("CourseCode", new SelectList(""), "Select Course", htmlAttributes: new { @class = "form-control" })
+
+        </div>
+        <div class="form-group col-lg-4">
+
+            <input type="submit" value="Search" class="btn btn-default" />
+
+        </div>
+    }
+
+</div>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LectureNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LectureName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PDF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Section.DepartmentCode)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LectureNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LectureName)
+            </td>
+            <td>
+                <a href="~/StudeCourse/DownloadFile?filePath=@item.PDF"><img src="~/img/images.png" style="width: 15px; height: 15px" title="Download" /></a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Section.DepartmentCode)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#DepartmentCode").change(function () {
+            $.get("/StdMaterials/GetCourse", { DepartmentCode: $("#DepartmentCode").val() }, function (data) {
+                $("#CourseCode").empty();
+
+                $.each(data, function (index, row) {
+                    $("#CourseCode").append("<option valus='" + row.CourseCode + "'>" + row.CourseCode + "</option>")
+
+                });
+            });
+
+
+        })
+    });
+
+</script>

@@ -58,4 +58,5 @@ namespace StudentService.Models
         [Compare("Password", ErrorMessage = "Password not match ")]
         public string ConfiremPassword { get; set; }
     }
+ 
 }

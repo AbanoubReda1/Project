@@ -3,54 +3,84 @@
 @{
     ViewBag.Title = "Login";
 }
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
 
-<h2>Login</h2>
 
 
-@using (Html.BeginForm()) 
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>login</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.StudentEmail, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StudentEmail, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StudentEmail, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <div id="login-button">
+        
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RememberMe, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.RememberMe)
-                    @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+        <img src="~/img/login-w-icon.png" />
     </div>
+    <div id="container">
+        <h1>Log In</h1>
+        <span class="close-btn">
+           
+            <img src="~/img/circle_close_delete_-128.png" />
+            <span> @ViewBag.Message</span>
+        </span>
+
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <form>
+
+            <!--input email-->
+
+            @Html.EditorFor(model => model.StudentEmail, new { htmlAttributes = new { name = "email", placeholder = "E-mail" } })
+            @Html.ValidationMessageFor(model => model.StudentEmail, "", new { @class = "text-white text-center" })
+
+            <!--input pass-->
+
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { name = "pass", placeholder = "Password" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-white text-center" })
+
+            <input type="submit" value="Log in" class="login" />
+
+
+
+            <div id="remember-container">
+                <input type="checkbox" id="checkbox-2-1" class="checkbox" checked="checked" />
+                <span id="remember">Remember me</span>
+
+                @Html.EditorFor(model => model.RememberMe, new { htmlAttributes = new { id = "checkbox-2-1", @class = "checkbox" } })
+                @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+
+
+                <span id="forgotten">Forgotten password</span>
+            </div>
+
+        </form>
+        
+    </div>
+    
+    <!-- Forgotten Password Container -->
+    <div id="forgotten-container">
+        <h1>Forgotten</h1>
+        <span class="close-btn">
+
+            <img src="~/img/circle_close_delete_-128.png" />
+        </span>
+
+        <form>
+            <input type="email" name="email" placeholder="E-mail">
+            <a href="#" class="orange-btn">Get new password</a>
+        </form>
+    </div>
+
+
+
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+
 </div>
 
 @section Scripts {

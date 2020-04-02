@@ -1,0 +1,104 @@
+﻿@model IEnumerable<StudentService.Models.Task>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        <div class="form-group col-lg-3">
+
+
+            @Html.DropDownList("DepartmentCode", ViewBag.Departmentlist as SelectList, "Select Department", htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        <div class="form-group  col-lg-3">
+
+
+
+
+            @Html.DropDownList("CourseCode", new SelectList(""), "Select Course", htmlAttributes: new { @class = "form-control" })
+
+        </div>
+        <div class="form-group  col-lg-3">
+
+
+
+
+            @Html.DropDownList("Type", new SelectList(""), "Select Type", htmlAttributes: new { @class = "form-control" })
+
+        </div>
+        <div class="form-group  col-lg-3">
+
+            <input type="submit" value="Search" class="btn btn-default" />
+
+        </div>
+    }
+
+</div>
+
+
+@foreach (var item in Model)
+{
+    <div class="card">
+        <a class="card-header card text-left">
+            @Html.DisplayFor(modelItem => item.Section.DepartmentCode)
+
+
+        </a>
+        <a class="card-header card text-center">
+            @Html.DisplayFor(modelItem => item.CourseCode)
+
+
+        </a>
+        <a class="card-header card text-right">
+            @Html.DisplayFor(modelItem => item.Type1.TypeName)
+
+
+        </a>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p>
+                    @Html.DisplayFor(modelItem => item.TaskHeader)
+                </p>
+
+                <footer class="blockquote-footer"> @Html.DisplayFor(modelItem => item.TaskDetails) <cite title="Source Title"> </cite></footer>
+            </blockquote>
+        </div>
+    </div>
+
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#DepartmentCode").change(function () {
+            $.get("/StdTask/GetTask", { DepartmentCode: $("#DepartmentCode").val() }, function (data) {
+                $("#CourseCode").empty();
+
+                $.each(data, function (index, row) {
+                    $("#CourseCode").append("<option valus='" + row.CourseCode + "'>" + row.CourseCode + "</option>")
+
+                });
+            });
+
+
+        })
+          $("#CourseCode").change(function () {
+            $.get("/StdTask/GetType", { CourseCode: $("#CourseCode").val() }, function (data) {
+                $("#Type").empty();
+
+                $.each(data, function (index, row) {
+                    $("#Type").append("<option valus='" + row.TypeID + "'>" + row.TypeID + "</option>")
+
+                });
+            });
+
+
+        })
+
+    });
+
+
+</script>

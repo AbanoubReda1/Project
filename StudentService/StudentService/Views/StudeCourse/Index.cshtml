@@ -1,0 +1,74 @@
+﻿@model IEnumerable<StudentService.Models.Course>
+
+@{
+    ViewBag.Title = "Syllabus";
+}
+<br />
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+
+        <div class="form-group col-lg-4">
+
+
+            @Html.DropDownList("DepartmentCode", ViewBag.Departmentlist as SelectList, "Select Department", htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        <div class="form-group col-lg-4">
+
+
+
+
+            @Html.DropDownList("CourseCode", new SelectList(""), "Select Course", htmlAttributes: new { @class = "form-control" })
+
+        </div>
+        <div class="form-group col-lg-4">
+
+            <input type="submit" value="Search" class="btn btn-default" />
+
+        </div>
+    }
+
+</div>
+
+<br/>
+
+@foreach (var item in Model)
+{
+
+    
+    <div class="card-deck col-lg-3">
+        <div class="card">
+            <img src="~/img/pdf.png" class="card-img-top" alt="..." height="150" width="150">
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Department.DepartmentName)</h5>
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.CourseTitle)</h5>
+                
+                <text>
+                    <a href="~/StudeCourse/DownloadFile?filePath=@item.Syllabus"><img src="~/img/images.png" style="width: 15px; height: 15px" title="Download" /></a>
+                    <p class="card-text"><small class="text-muted">Number of Credit Hour : @Html.DisplayFor(modelItem => item.CrediteHour)</small></p>
+            </div>
+        </div>
+
+     </div>
+ }
+        
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#DepartmentCode").change(function () {
+                    $.get("/StudeCourse/GetCourse", { DepartmentCode: $("#DepartmentCode").val() }, function (data) {
+                        $("#CourseCode").empty();
+
+                        $.each(data, function (index, row) {
+                            $("#CourseCode").append("<option valus='" + row.CourseCode + "'>" + row.CourseTitle + "</option>")
+
+                        });
+                    });
+
+
+                })
+            });
+
+        </script>
