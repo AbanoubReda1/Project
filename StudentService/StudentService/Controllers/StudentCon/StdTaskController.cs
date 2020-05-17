@@ -14,6 +14,7 @@ namespace StudentService.Controllers
         public ActionResult Index()
         {
             List<Department> Departmentlist = db.Departments.ToList();
+            
             ViewBag.Departmentlist = new SelectList(Departmentlist, "DepartmentCode", "DepartmentName");
 
             var tasks = db.Tasks.ToList();
@@ -22,14 +23,16 @@ namespace StudentService.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(string CourseCode)
+        public ActionResult Index(string CourseCode ,string Type)
         {
             List<Department> Departmentlist = db.Departments.ToList();
             ViewBag.Departmentlist = new SelectList(Departmentlist, "DepartmentCode", "DepartmentName");
-
-            var courses = db.Tasks.Where(a => a.CourseCode == CourseCode).ToList();
+            
+            var courses = db.Tasks.Where(a => a.CourseCode == CourseCode).Where(b=> b.Type == Type).ToList();
+           
 
             return View(courses);
+            
         }
         public JsonResult GetTask(string DepartmentCode)
         {
@@ -38,10 +41,11 @@ namespace StudentService.Controllers
 
             return Json(courselist, JsonRequestBehavior.AllowGet);
         }
-        public JsonResult GetType(string Type)
+        public JsonResult GetType(string CourseCode)
         {
             db.Configuration.ProxyCreationEnabled = false;
-            List<Models.Type> types = db.Types.Where(x => x.TypeID == Type).ToList();
+            List<Models.Task> types = db.Tasks.Where(x => x.CourseCode == CourseCode).ToList(); ;
+
 
             return Json(types, JsonRequestBehavior.AllowGet);
         }

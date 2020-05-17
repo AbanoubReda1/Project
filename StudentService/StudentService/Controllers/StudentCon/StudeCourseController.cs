@@ -40,7 +40,7 @@ namespace StudentService.Controllers
         }
         public ActionResult DownloadFile(string filePath)
         {
-            string fullName = Server.MapPath("" + filePath);
+ string fullName = Server.MapPath("" + filePath);
 
             byte[] fileBytes = GetFile(fullName);
             return File(

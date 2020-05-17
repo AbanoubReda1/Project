@@ -39,8 +39,8 @@ namespace StudentService.Controllers
         // GET: Tasks/Create
         public ActionResult Create()
         {
-            ViewBag.DepartmentCode = new SelectList(db.Sections, "DepartmentCode", "DepartmentCode");
-            ViewBag.CourseCode = new SelectList(db.Sections, "CourseCode", "CourseCode");
+            ViewBag.DepartmentCode = new SelectList(db.Departments, "DepartmentCode", "DepartmentCode");
+            ViewBag.CourseCode = new SelectList(db.Courses, "CourseCode", "CourseCode");
             ViewBag.SectionNumber = new SelectList(db.Sections, "SectionNumber", "SectionNumber");
             ViewBag.Semester = new SelectList(db.Sections, "Semester", "Semester");
             ViewBag.Year = new SelectList(db.Sections, "Year", "Year");

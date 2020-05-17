@@ -182,6 +182,7 @@
     <Compile Include="Controllers\Admin\MaterialsController.cs" />
     <Compile Include="Controllers\Admin\ProjectsController.cs" />
     <Compile Include="Controllers\Admin\SectionsController.cs" />
+    <Compile Include="Controllers\ProjectStdController.cs" />
     <Compile Include="Controllers\StdMaterialsController.cs" />
     <Compile Include="Controllers\StudentCon\StdTaskController.cs" />
     <Compile Include="Controllers\StudentCon\StudeCourseController.cs" />
@@ -504,6 +505,7 @@
     <Content Include="Views\StdMaterials\Index.cshtml" />
     <Content Include="Views\StudeCourse\Index.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\ProjectStd\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -75,28 +75,39 @@
     $(document).ready(function () {
         $("#DepartmentCode").change(function () {
             $.get("/StdTask/GetTask", { DepartmentCode: $("#DepartmentCode").val() }, function (data) {
+               
                 $("#CourseCode").empty();
-
+                 $("#CourseCode").append("<option value='0'>CourseCode</option>");
                 $.each(data, function (index, row) {
                     $("#CourseCode").append("<option valus='" + row.CourseCode + "'>" + row.CourseCode + "</option>")
 
+
                 });
             });
 
-
         })
-          $("#CourseCode").change(function () {
+         
+    });
+
+
+
+    $(document).ready(function () {
+        $("#CourseCode").change(function () {
             $.get("/StdTask/GetType", { CourseCode: $("#CourseCode").val() }, function (data) {
                 $("#Type").empty();
-
+                 $("#Type").append("<option value='0'>Type</option>");
                 $.each(data, function (index, row) {
-                    $("#Type").append("<option valus='" + row.TypeID + "'>" + row.TypeID + "</option>")
+                    $("#Type").append("<option valus='" + row.Type + "'>" + row.Type + "</option>")
+
 
                 });
             });
 
 
+
+
         })
+        
 
     });
 
